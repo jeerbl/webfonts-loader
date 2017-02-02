@@ -20,16 +20,15 @@
   "author": "Jérôme Brunel",
   "license": "MIT",
   "dependencies": {
-    "loader-utils": "^0.2.10",
-    "webfonts-generator": "^0.3.2",
-    "glob": "^6.0.2"
+    "loader-utils": "^0.2.16",
+    "webfonts-generator": "^0.3.5",
+    "glob": "^7.1.1"
   },
   "devDependencies": {
-    "css-loader": "^0.15.1",
-    "file-loader": "^0.8.4",
-    "node-libs-browser": "^0.5.2",
-    "style-loader": "^0.12.3",
-    "url-loader": "^0.5.6",
-    "webpack": "^1.9.11"
+    "css-loader": "^0.26.1",
+    "file-loader": "^0.10.0",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^2.2.1"
   }
 }
