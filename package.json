@@ -1,8 +1,8 @@
 {
-  "name": "webfonts-generator-loader",
+  "name": "webfonts-loader",
   "version": "0.0.1",
   "description": "A WebPack loader to automaticaly generate font files and CSS to make your own icon font",
-  "repository": "jeerbl/webfonts-generator-loader",
+  "repository": "jeerbl/webfonts-loader",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

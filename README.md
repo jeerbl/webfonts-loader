@@ -1,13 +1,13 @@
 ### __This repository has been dumped from [DragonsInn/fontgen-loader](https://github.com/DragonsInn/fontgen-loader) since it wasn't updated since March 2016.__
 
 
-# `webfonts-generator-loader` - Bam, easy webfonts!
+# `webfonts-loader` - Bam, easy webfonts!
 
 Have you faced this? You have 4 icons from FontAwesome, and 19 from Glyphicons, and maybe you are eying at another webfont's icons and wishing to use them?
 
 What a mess! Okay okay, so what do we do? We make our own. And how? ...good question. In fact, this question comes up just so often... So I decided to write a little thing to help out.
 
-## How `webfonts-generator-loader` works.
+## How `webfonts-loader` works.
 There is a tool that lets us generate fonts automaticaly by a configuration. The font is created by putting several SVG icons together and generating the proper file(s). That includes:
 
 - A font file for WOF, EOT, TTF and WOFF2. Also SVG, if you want. But there is a trend of removal within browsers - you can see more on [caniuse](http://caniuse.com).
