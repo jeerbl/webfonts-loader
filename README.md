@@ -20,14 +20,14 @@ In order to use this loader, you need to be aware that this is a "trigger loader
 
 ```javascript
 module.exports = {
-    resolve: {
-        loaders: [
-            {
-                test: /\.font\.(js|json)$/,
-                loader: "style!css!fontgen"
-            }
-        ]
-    }
+  resolve: {
+    loaders: [
+      {
+        test: /\.font\.(js|json)$/,
+        loader: "style!css!fontgen"
+      }
+    ]
+  }
 }
 ```
 
@@ -51,24 +51,24 @@ Example:
 module style
 ```javascript
 module.exports = {
-    "files": [
-            "icon/my.svg",
-            "icon/awesome.svg",
-            "icon/stuff.svg",
-            "icon/special/*.svg" // glob style
-        ],
-    "fontName": "Awesomecons",
-    "classPrefix": "ai-",
-    "baseClass": "ai",
-    "fixedWidth": true,
-    "types": ["eot", "woff", "ttf", "svg"] // this is the default
+  "files": [
+    "icon/my.svg",
+    "icon/awesome.svg",
+    "icon/stuff.svg",
+    "icon/special/*.svg" // glob style
+  ],
+  "fontName": "Awesomecons",
+  "classPrefix": "ai-",
+  "baseClass": "ai",
+  "fixedWidth": true,
+  "types": ["eot", "woff", "ttf", "svg"] // this is the default
 }
 ```
 
 or .json (content should be an object)
 ```json
 {
-    "files": []
+  "files": []
 }
 ```
 
