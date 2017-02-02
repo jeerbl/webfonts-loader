@@ -1,0 +1,8 @@
+{
+  "fontName" : "octicon2",
+  "files" : [
+    "./**/svg/**/*.svg"
+  ],
+  "baseClass" : "octicon2",
+  "classPrefix" : "octicon2-"
+}
