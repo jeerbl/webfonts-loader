@@ -3,6 +3,8 @@
 
 # `webfonts-loader` - Bam, easy webfonts!
 
+[![npm](https://img.shields.io/npm/v/webfonts-loader.svg?style=flat-square)](https://www.npmjs.com/package/webfonts-loader)
+
 Have you faced this? You have 4 icons from FontAwesome, and 19 from Glyphicons, and maybe you are eying at another webfont's icons and wishing to use them?
 
 What a mess! Okay okay, so what do we do? We make our own. And how? ...good question. In fact, this question comes up just so often... So I decided to write a little thing to help out.
