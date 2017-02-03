@@ -29,7 +29,7 @@ module.exports = {
     loaders: [
       {
         test: /\.font\.(js|json)$/,
-        loader: "style!css!fontgen"
+        loader: "style!css!webfonts"
       }
     ]
   }
@@ -102,7 +102,7 @@ You also can use a module like `glob` to pick up a variable set of icons, too. M
 Which template to use? By default, a CSS one is used. The template is to be processed by Handlebars. See [the generator](https://github.com/sunflowerdeath/webfonts-generator)'s readme itself for more info.
 
 - `embed`, Boolean
-Should the fonts be embedded in the CSS? By default the fonts are written to disk. If `embed` is specified the font is base64 encoded and embedded inside the `@font-face` declaration. Example configuration: `loader: "style!css!fontgen?embed&types=woff"`.
+Should the fonts be embedded in the CSS? By default the fonts are written to disk. If `embed` is specified the font is base64 encoded and embedded inside the `@font-face` declaration. Example configuration: `loader: "style!css!webfonts?embed&types=woff"`.
 
 ## Font configuration (`*.font.js` or `*.font.json`)
 
