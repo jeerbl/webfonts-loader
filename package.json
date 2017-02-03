@@ -5,7 +5,7 @@
   "repository": "jeerbl/webfonts-loader",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "semistandard"
   },
   "keywords": [
     "font",
@@ -27,6 +27,7 @@
   "devDependencies": {
     "css-loader": "^0.26.1",
     "file-loader": "^0.10.0",
+    "semistandard": "*",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^2.2.1"
