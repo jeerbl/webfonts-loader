@@ -170,7 +170,7 @@ module.exports = function (content) {
             content: res[format]
           }
         );
-        urls[format] = path.join(pub, url).replace(/\\/g, '/');
+        urls[format] = (pub + url).replace(/\\/g, '/');
         self.emitFile(url, res[format]);
       } else {
         urls[format] = 'data:' +
