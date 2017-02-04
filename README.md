@@ -98,13 +98,19 @@ You also can use a module like `glob` to pick up a variable set of icons, too. M
 # Configuration
 ## Loader parameters
 
-- `template`, String
-Which template to use? By default, a CSS one is used. The template is to be processed by Handlebars. See [the generator](https://github.com/sunflowerdeath/webfonts-generator)'s readme itself for more info.
-
 - `embed`, Boolean
 Should the fonts be embedded in the CSS? By default the fonts are written to disk. If `embed` is specified the font is base64 encoded and embedded inside the `@font-face` declaration. Example configuration: `loader: "style!css!webfonts?embed&types=woff"`.
 
 ## Font configuration (`*.font.js` or `*.font.json`)
+
+- `baseClass`, String
+The base class, under which each icon class is to be crated.
+
+- `classPrefix`, String
+The prefix to be used with each icon class.
+
+- `cssTemplate`, String
+Which template to use? By default, a CSS one is used. The template is to be processed by Handlebars. See [webfonts-generator](https://github.com/sunflowerdeath/webfonts-generator)'s README itself for more info.
 
 - `files`, Array
 An array of SVG icon files. Supports glob
@@ -112,16 +118,10 @@ An array of SVG icon files. Supports glob
 - `fontName`, String
 Name of your font.
 
-- `classPrefix`, String
-The prefix to be used with each icon class.
-
-- `baseClass`, String
-The base class, under which each icon class is to be crated.
-
 - `types`, Array
 Possible values are: `["svg", "eot", "wof", "ttf"]`.
 
-For additional options, see the generator's README file.
+For additional options, see the [webfonts-generator](https://github.com/sunflowerdeath/webfonts-generator)'s README file.
 
 ### Special configuration
 There is one special configuration optin that exists in both, the actual font configuration and as a query parameter: `fileName`. This one decides the output of the font filenames. You can create a filename template with these elements (will likely become more in the future):
