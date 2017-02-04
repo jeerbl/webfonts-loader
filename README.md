@@ -7,7 +7,7 @@
 
 [![npm](https://img.shields.io/npm/v/webfonts-loader.svg?style=flat-square)](https://www.npmjs.com/package/webfonts-loader)
 [![Travis](https://img.shields.io/travis/jeerbl/webfonts-loader.svg?style=flat-square)](https://travis-ci.org/jeerbl/webfonts-loader)
-[![license](https://img.shields.io/github/license/jeerbl/webfonts-loader.svg?style=flat-square)]()
+[![license](https://img.shields.io/github/license/jeerbl/webfonts-loader.svg?style=flat-square)](https://github.com/jeerbl/webfonts-loader/blob/master/LICENSE)
 
 Have you faced this? You have 4 icons from FontAwesome, and 19 from Glyphicons, and maybe you are eying at another webfont's icons and wishing to use them?
 
