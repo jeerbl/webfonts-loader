@@ -143,7 +143,7 @@ module.exports = function (content) {
   var self = this;
   var opts = this.options;
   var pub = (
-    opts.output.publicPath || '/'
+    (opts.output && opts.output.publicPath) || '/'
   );
   var embed = !!params.embed;
 
