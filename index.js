@@ -83,7 +83,7 @@ module.exports = function (content) {
   config.files = filesAndDeps.files;
 
   // With everything set up, let's make an ACTUAL config.
-  var formats = config.types || ['eot', 'woff', 'ttf', 'svg'];
+  var formats = config.types || ['eot', 'woff', 'woff2', 'ttf', 'svg'];
   if (formats.constructor !== Array) {
     formats = [formats];
   }
