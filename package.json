@@ -18,7 +18,7 @@
     "loader"
   ],
   "author": "Jérôme Brunel",
-  "license": "UNLICENSED",
+  "license": "Unlicense",
   "dependencies": {
     "loader-utils": "^0.2.16",
     "webfonts-generator": "^0.4.0",
