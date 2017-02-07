@@ -7,7 +7,8 @@ var mimeTypes = {
   'eot': 'application/vnd.ms-fontobject',
   'svg': 'image/svg+xml',
   'ttf': 'application/x-font-ttf',
-  'woff': 'application/font-woff'
+  'woff': 'application/font-woff',
+  'woff2': 'font/woff2'
 };
 
 function absolute (from, to) {
