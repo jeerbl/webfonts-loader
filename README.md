@@ -65,7 +65,7 @@ module.exports = {
   ],
   "fontName": "Awesomecons",
   "classPrefix": "ai-",
-  "baseSelector": "ai",
+  "baseClass": "ai",
   "fixedWidth": true,
   "types": ["eot", "woff", "ttf", "svg"] // this is the default
 }
@@ -104,7 +104,7 @@ Should the fonts be embedded in the CSS? By default the fonts are written to dis
 
 ## Font configuration (`*.font.js` or `*.font.json`)
 
-- `baseSelector`, String
+- `baseClass`, String
 The base class, under which each icon class is to be crated.
 
 - `classPrefix`, String
