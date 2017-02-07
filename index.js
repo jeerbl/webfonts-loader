@@ -96,7 +96,7 @@ module.exports = function (content) {
     fontHeight: config.fontHeight || 1000, // Fixes conversion issues with small svgs,
     codepoints: config.codepoints || {},
     templateOptions: {
-      baseClass: config.baseClass || 'icon',
+      baseSelector: config.baseSelector || '.icon',
       classPrefix: 'classPrefix' in config ? config.classPrefix : 'icon-'
     },
     dest: '',
