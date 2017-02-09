@@ -11,15 +11,6 @@ var mimeTypes = {
   'woff2': 'font/woff2'
 };
 
-function absolute (from, to) {
-  if (arguments.length < 2) {
-    return function (to) {
-      return path.resolve(from, to);
-    };
-  }
-  return path.resolve(from, to);
-}
-
 function getFilesAndDeps (patterns, context) {
   var files = [];
   var filesDeps = [];
@@ -27,17 +18,21 @@ function getFilesAndDeps (patterns, context) {
 
   function addFile (file) {
     filesDeps.push(file);
-    files.push(absolute(context, file));
+    files.push(path.resolve(context, file));
   }
 
   function addByGlob (globExp) {
     var globOptions = {cwd: context};
 
     var foundFiles = glob.sync(globExp, globOptions);
-    files = files.concat(foundFiles.map(absolute(context)));
+    files = files.concat(foundFiles.map(file => {
+      return path.resolve(context, file);
+    }));
 
     var globDirs = glob.sync(path.dirname(globExp) + '/', globOptions);
-    directoryDeps = directoryDeps.concat(globDirs.map(absolute(context)));
+    directoryDeps = directoryDeps.concat(globDirs.map(file => {
+      return path.resolve(context, file);
+    }));
   }
 
   // Re-work the files array.
@@ -116,11 +111,11 @@ module.exports = function (content) {
   }
 
   if (config.cssTemplate) {
-    fontconf.cssTemplate = absolute(this.context, config.cssTemplate);
+    fontconf.cssTemplate = path.resolve(this.context, config.cssTemplate);
   }
 
   if (config.cssFontsPath) {
-    fontconf.cssFontsPath = absolute(this.context, config.cssFontsPath);
+    fontconf.cssFontsPath = path.resolve(this.context, config.cssFontsPath);
   }
 
   for (var option in config.templateOptions) {
