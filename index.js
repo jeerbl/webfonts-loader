@@ -63,15 +63,6 @@ module.exports = function (content) {
     config = this.exec(content, this.resourcePath);
   }
 
-  config.__dirname = path.dirname(this.resourcePath);
-
-  // Sanity check
-  /*
-   if(typeof config.fontName != "string" || typeof config.files != "array") {
-   this.reportError("Typemismatch in your config. Verify your config for correct types.");
-   return false;
-   }
-   */
   var filesAndDeps = getFilesAndDeps(config.files, this.context);
   filesAndDeps.dependencies.files.forEach(this.addDependency.bind(this));
   filesAndDeps.dependencies.directories.forEach(this.addContextDependency.bind(this));
@@ -83,7 +74,7 @@ module.exports = function (content) {
     formats = [formats];
   }
 
-  var fontconf = {
+  var generatorConfiguration = {
     files: config.files,
     fontName: config.fontName,
     types: formats,
@@ -103,24 +94,24 @@ module.exports = function (content) {
   // Unfortunately that actually broke my editor's syntax-highlighting...
   // ... what a shame.
   if (typeof config.rename === 'function') {
-    fontconf.rename = config.rename;
+    generatorConfiguration.rename = config.rename;
   } else {
-    fontconf.rename = function (f) {
+    generatorConfiguration.rename = function (f) {
       return path.basename(f, '.svg');
     };
   }
 
   if (config.cssTemplate) {
-    fontconf.cssTemplate = path.resolve(this.context, config.cssTemplate);
+    generatorConfiguration.cssTemplate = path.resolve(this.context, config.cssTemplate);
   }
 
   if (config.cssFontsPath) {
-    fontconf.cssFontsPath = path.resolve(this.context, config.cssFontsPath);
+    generatorConfiguration.cssFontsPath = path.resolve(this.context, config.cssFontsPath);
   }
 
   for (var option in config.templateOptions) {
     if (config.templateOptions.hasOwnProperty(option)) {
-      fontconf.templateOptions[option] = config.templateOptions[option];
+      generatorConfiguration.templateOptions[option] = config.templateOptions[option];
     }
   }
 
@@ -135,7 +126,7 @@ module.exports = function (content) {
   ];
   for (var x in keys) {
     if (typeof config[keys[x]] !== 'undefined') {
-      fontconf[keys[x]] = config[keys[x]];
+      generatorConfiguration[keys[x]] = config[keys[x]];
     }
   }
 
@@ -147,15 +138,15 @@ module.exports = function (content) {
   );
   var embed = !!params.embed;
 
-  if (fontconf.cssTemplate) {
-    this.addDependency(fontconf.cssTemplate);
+  if (generatorConfiguration.cssTemplate) {
+    this.addDependency(generatorConfiguration.cssTemplate);
   }
 
-  if (fontconf.cssFontsPath) {
-    this.addDependency(fontconf.cssFontsPath);
+  if (generatorConfiguration.cssFontsPath) {
+    this.addDependency(generatorConfiguration.cssFontsPath);
   }
 
-  fontgen(fontconf, function (err, res) {
+  fontgen(generatorConfiguration, function (err, res) {
     if (err) {
       return cb(err);
     }
@@ -165,7 +156,7 @@ module.exports = function (content) {
       if (!embed) {
         var filename = config.fileName || params.fileName || '[hash]-[fontname].[ext]';
         filename = filename
-          .replace('[fontname]', fontconf.fontName)
+          .replace('[fontname]', generatorConfiguration.fontName)
           .replace('[ext]', format);
         var url = loaderUtils.interpolateName(this,
           filename,
