@@ -7,7 +7,8 @@ var mimeTypes = {
   'eot': 'application/vnd.ms-fontobject',
   'svg': 'image/svg+xml',
   'ttf': 'application/x-font-ttf',
-  'woff': 'application/font-woff'
+  'woff': 'application/font-woff',
+  'woff2': 'font/woff2'
 };
 
 function absolute (from, to) {
@@ -82,7 +83,7 @@ module.exports = function (content) {
   config.files = filesAndDeps.files;
 
   // With everything set up, let's make an ACTUAL config.
-  var formats = config.types || ['eot', 'woff', 'ttf', 'svg'];
+  var formats = config.types || ['eot', 'woff', 'woff2', 'ttf', 'svg'];
   if (formats.constructor !== Array) {
     formats = [formats];
   }
@@ -95,7 +96,7 @@ module.exports = function (content) {
     fontHeight: config.fontHeight || 1000, // Fixes conversion issues with small svgs,
     codepoints: config.codepoints || {},
     templateOptions: {
-      baseClass: config.baseClass || 'icon',
+      baseSelector: config.baseSelector || '.icon',
       classPrefix: 'classPrefix' in config ? config.classPrefix : 'icon-'
     },
     dest: '',
@@ -178,7 +179,7 @@ module.exports = function (content) {
             content: res[format]
           }
         );
-        urls[format] = (pub + url).replace(/\\/g, '/');
+        urls[format] = path.join(pub, url).replace(/\\/g, '/');
         self.emitFile(url, res[format]);
       } else {
         urls[format] = 'data:' +
