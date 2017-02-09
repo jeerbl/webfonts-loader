@@ -1,5 +1,5 @@
 var loaderUtils = require('loader-utils');
-var fontgen = require('webfonts-generator');
+var webfontsGenerator = require('webfonts-generator');
 var path = require('path');
 var glob = require('glob');
 
@@ -146,7 +146,7 @@ module.exports = function (content) {
     this.addDependency(generatorConfiguration.cssFontsPath);
   }
 
-  fontgen(generatorConfiguration, function (err, res) {
+  webfontsGenerator(generatorConfiguration, function (err, res) {
     if (err) {
       return cb(err);
     }
