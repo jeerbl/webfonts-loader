@@ -101,7 +101,11 @@ module.exports = function (content) {
     },
     dest: '',
     writeFiles: false,
-    formatOptions: config.formatOptions || {}
+    formatOptions: config.formatOptions || {
+        ttf: {
+            ts: 0 // it's important to set timestamp to fixed value for ttf generation to have consistent output in long term with the same hash
+        }
+    }
   };
 
   // This originally was in the object notation itself.
