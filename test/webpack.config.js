@@ -11,7 +11,8 @@ module.exports = {
       {
         test: /\.font\.(js|json)$/,
         loader: 'style!css!' + require.resolve('../')
-      }, {
+      },
+      {
         test: /\.(woff|eot|ttf|svg)$/,
         loader: 'url'
       }

@@ -118,6 +118,10 @@ module.exports = function (content) {
     fontconf.cssTemplate = absolute(this.context, config.cssTemplate);
   }
 
+  if (config.cssFontsPath) {
+    fontconf.cssFontsPath = absolute(this.context, config.cssFontsPath);
+  }
+
   for (var option in config.templateOptions) {
     if (config.templateOptions.hasOwnProperty(option)) {
       fontconf.templateOptions[option] = config.templateOptions[option];
@@ -149,6 +153,10 @@ module.exports = function (content) {
 
   if (fontconf.cssTemplate) {
     this.addDependency(fontconf.cssTemplate);
+  }
+
+  if (fontconf.cssFontsPath) {
+    this.addDependency(fontconf.cssFontsPath);
   }
 
   fontgen(fontconf, function (err, res) {
