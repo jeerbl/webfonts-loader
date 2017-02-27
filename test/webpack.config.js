@@ -1,21 +1,33 @@
-var path = require('path');
+const path = require('path');
+
 module.exports = {
-  context: path.resolve(__dirname),
-  entry: './entry.js',
+  entry: [
+    './entry.js'
+  ],
   output: {
-    filename: 'bundle.js',
-    path: path.join(__dirname, 'build')
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
+    filename: 'app.bundle.js'
   },
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.font\.(js|json)$/,
-        loader: 'style!css!' + require.resolve('../')
-      },
-      {
-        test: /\.(woff|eot|ttf|svg)$/,
-        loader: 'url'
+        test: /\.font\.js/,
+        use: [
+          'style-loader',
+          'css-loader',
+          require.resolve('../')
+        ]
       }
     ]
+  },
+  devServer: {
+    compress: true,
+    historyApiFallback: true,
+    host: 'localhost',
+    hot: true,
+    https: true,
+    inline: true,
+    port: '8080'
   }
 };

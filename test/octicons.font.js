@@ -1,8 +1,11 @@
-var glob = require('glob').sync;
-
 module.exports = {
-  fontName: 'Octicons',
-  files: glob('./octicons/svg/*.svg'),
-  baseClass: 'octicon',
-  classPrefix: 'octicon-'
+  'files': [
+    'node_modules/octicons/build/svg/*.svg'
+  ],
+  'fontName': 'octicons',
+  'classPrefix': 'octicon-',
+  'baseSelector': '.octicon',
+  'types': ['eot', 'woff', 'woff2', 'ttf', 'svg'],
+  'fixedWidth': true,
+  'fileName': 'app.[fontname].[hash].[ext]'
 };

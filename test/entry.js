@@ -1,13 +1,12 @@
 require('./octicons.font');
-require('./octicon2/octicon2.font');
-require('./octicons-json.font');
 
-document.write('<span class="octicons octicons-alert"></span>  ');
-document.write('<span class="octicon2 octicon2-alignment-align"></span>  ');
-document.write('<span class="octicon2 octicon2-arrow-right"></span>  ');
-document.write('<span class="octicon2 octicon2-arrow-right2"></span>  ');
-document.write('<span class="octicon2 octicon2-arrow-left"></span>  ');
-document.write('<span class="octicon2 octicon2-alignment-aligned-to"></span>  ');
-document.write('<span class="octicon octicon-alert"></span>  ');
-document.write('<span class="octicon-json octicon-json-alert"></span>  ');
-
+document.write('<span class="octicons octicons-alert"></span>');
+document.write('<span class="octicons octicons-arrow-down"></span>');
+document.write('<span class="octicons octicons-arrow-left"></span>');
+document.write('<span class="octicons octicons-arrow-right"></span>');
+document.write('<span class="octicons octicons-arrow-small-down"></span>');
+document.write('<span class="octicons octicons-arrow-small-left"></span>');
+document.write('<span class="octicons octicons-arrow-small-right"></span>');
+document.write('<span class="octicons octicons-arrow-small-up"></span>');
+document.write('<span class="octicons octicons-arrow-up"></span>');
+document.write('<span class="octicons octicons-beaker"></span>');
