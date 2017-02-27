@@ -90,6 +90,10 @@ module.exports = function (content) {
     formatOptions: config.formatOptions || {}
   };
 
+  //Try to get additional options from webpack query string or font config file
+  Object.assign(generatorConfiguration, this.query);
+  Object.assign(generatorConfiguration, config);
+  
   // This originally was in the object notation itself.
   // Unfortunately that actually broke my editor's syntax-highlighting...
   // ... what a shame.
@@ -133,8 +137,10 @@ module.exports = function (content) {
   var cb = this.async();
   var self = this;
   var opts = this.options;
+  
+  //Generate destination path for font files, dest option from options takes precedence
   var pub = (
-    (opts.output && opts.output.publicPath) || '/'
+    generatorConfiguration.dest || (opts.output && opts.output.publicPath) || '/'
   );
   var embed = !!params.embed;
 
