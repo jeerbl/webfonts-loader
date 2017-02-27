@@ -1,8 +1,0 @@
-{
-    "fontName" : "Octicons-json",
-    "files" : [
-        "./octicons/svg/*.svg"
-    ],
-    "baseClass" : "octicon-json",
-    "classPrefix" : "octicon-json-"
-}

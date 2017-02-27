@@ -55,7 +55,7 @@ function getFilesAndDeps (patterns, context) {
 
 module.exports = function (content) {
   this.cacheable();
-  var params = loaderUtils.parseQuery(this.query);
+  var params = loaderUtils.getOptions(this.query);
   var config;
   try {
     config = JSON.parse(content);
