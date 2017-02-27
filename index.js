@@ -53,6 +53,16 @@ function getFilesAndDeps (patterns, context) {
   };
 }
 
+// Futureproof webpack option parsing
+function wpGetOptions (context) {
+  if (typeof context.query === 'string') {
+    if (loaderUtils.getOptions) { return loaderUtils.getOptions(context); }
+    if (loaderUtils.parseQuery) { return loaderUtils.parseQuery(context.query); }
+  } else {
+    return context.query;
+  }
+}
+
 module.exports = function (content) {
   this.cacheable();
   var params = loaderUtils.parseQuery(this.query);
@@ -91,7 +101,7 @@ module.exports = function (content) {
   };
 
   // Try to get additional options from webpack query string or font config file
-  Object.assign(generatorConfiguration, this.query);
+  Object.assign(generatorConfiguration, wpGetOptions(this));
   Object.assign(generatorConfiguration, config);
 
   // This originally was in the object notation itself.
@@ -172,7 +182,13 @@ module.exports = function (content) {
           }
         );
         urls[format] = path.join(pub, url).replace(/\\/g, '/');
-        self.emitFile(url, res[format]);
+
+        // Respect dest option
+        if (generatorConfiguration.dest) {
+          self.emitFile(urls[format], res[format]);
+        } else {
+          self.emitFile(url, res[format]);
+        }
       } else {
         urls[format] = 'data:' +
           mimeTypes[format] +
