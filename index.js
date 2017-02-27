@@ -55,7 +55,7 @@ function getFilesAndDeps (patterns, context) {
 
 module.exports = function (content) {
   this.cacheable();
-  var params = loaderUtils.getOptions(this.query);
+  var params = loaderUtils.getOptions(this) || {};
   var config;
   try {
     config = JSON.parse(content);
@@ -131,8 +131,7 @@ module.exports = function (content) {
   }
 
   var cb = this.async();
-  var self = this;
-  var opts = this.options;
+  var opts = this.options || {};
   var pub = (
     (opts.output && opts.output.publicPath) || '/'
   );
@@ -146,7 +145,7 @@ module.exports = function (content) {
     this.addDependency(generatorConfiguration.cssFontsPath);
   }
 
-  webfontsGenerator(generatorConfiguration, function (err, res) {
+  webfontsGenerator(generatorConfiguration, (err, res) => {
     if (err) {
       return cb(err);
     }
@@ -161,12 +160,12 @@ module.exports = function (content) {
         var url = loaderUtils.interpolateName(this,
           filename,
           {
-            context: self.options.context || this.context,
+            context: this.options.context || this.context,
             content: res[format]
           }
         );
         urls[format] = path.join(pub, url).replace(/\\/g, '/');
-        self.emitFile(url, res[format]);
+        this.emitFile(url, res[format]);
       } else {
         urls[format] = 'data:' +
           mimeTypes[format] +

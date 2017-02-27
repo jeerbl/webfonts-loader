@@ -1,0 +1,23 @@
+{
+  "name": "webfonts-loader-test",
+  "private": true,
+  "main": "entry.js",
+  "scripts": {
+    "test": "rimraf ./dist && webpack"
+  },
+  "dependencies": {
+    "octicons": "^5.0.1"
+  },
+  "devDependencies": {
+    "css-loader": "^0.26.2",
+    "rimraf": "^2.6.1",
+    "style-loader": "^0.13.2",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.1"
+  },
+  "standard": {
+    "ignore": [
+      "./dist"
+    ]
+  }
+}

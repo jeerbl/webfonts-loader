@@ -5,7 +5,7 @@
   "repository": "jeerbl/webfonts-loader",
   "main": "index.js",
   "scripts": {
-    "test": "semistandard"
+    "test": "semistandard && cd test && npm test"
   },
   "keywords": [
     "font",
@@ -20,17 +20,15 @@
   "author": "Jérôme Brunel",
   "license": "Unlicense",
   "dependencies": {
+    "glob": "^7.1.1",
     "loader-utils": "^1.0.2",
-    "webfonts-generator": "^0.4.0",
-    "glob": "^7.1.1"
+    "webfonts-generator": "^0.4.0"
   },
   "devDependencies": {
     "css-loader": "^0.26.2",
     "file-loader": "^0.10.1",
     "semistandard": "*",
     "style-loader": "^0.13.2",
-    "url-loader": "^0.5.8",
-    "webpack": "^2.2.1",
-    "webpack-dev-server": "^2.4.1"
+    "url-loader": "^0.5.8"
   }
 }
