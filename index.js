@@ -184,9 +184,9 @@ module.exports = function (content) {
         urls[format] = path.join(pub, url).replace(/\\/g, '/');
 
         if (generatorConfiguration.dest) {
-          self.emitFile(urls[format], res[format]);
+          this.emitFile(urls[format], res[format]);
         } else {
-          self.emitFile(url, res[format]);
+          this.emitFile(url, res[format]);
         }
       } else {
         urls[format] = 'data:' +
