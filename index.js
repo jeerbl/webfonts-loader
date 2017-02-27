@@ -53,6 +53,16 @@ function getFilesAndDeps (patterns, context) {
   };
 }
 
+// Futureproof webpack option parsing
+function wpGetOptions (context) {
+  if (typeof context.query === 'string') {
+    if (loaderUtils.getOptions) { return loaderUtils.getOptions(context); }
+    if (loaderUtils.parseQuery) { return loaderUtils.parseQuery(context.query); }
+  } else {
+    return context.query;
+  }
+}
+
 module.exports = function (content) {
   this.cacheable();
   var params = loaderUtils.getOptions(this) || {};
@@ -89,6 +99,10 @@ module.exports = function (content) {
     writeFiles: false,
     formatOptions: config.formatOptions || {}
   };
+
+  // Try to get additional options from webpack query string or font config file
+  Object.assign(generatorConfiguration, wpGetOptions(this));
+  Object.assign(generatorConfiguration, config);
 
   // This originally was in the object notation itself.
   // Unfortunately that actually broke my editor's syntax-highlighting...
@@ -131,9 +145,12 @@ module.exports = function (content) {
   }
 
   var cb = this.async();
+
+  // Generate destination path for font files, dest option from options takes precedence
   var opts = this.options || {};
+
   var pub = (
-    (opts.output && opts.output.publicPath) || '/'
+    generatorConfiguration.dest || (opts.output && opts.output.publicPath) || '/'
   );
   var embed = !!params.embed;
 
@@ -165,7 +182,12 @@ module.exports = function (content) {
           }
         );
         urls[format] = path.join(pub, url).replace(/\\/g, '/');
-        this.emitFile(url, res[format]);
+
+        if (generatorConfiguration.dest) {
+          this.emitFile(urls[format], res[format]);
+        } else {
+          this.emitFile(url, res[format]);
+        }
       } else {
         urls[format] = 'data:' +
           mimeTypes[format] +
