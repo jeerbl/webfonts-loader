@@ -182,6 +182,13 @@ module.exports = function (content) {
           }
         );
         urls[format] = path.join(pub, url).replace(/\\/g, '/');
+        if (pub.startsWith('//') && !urls[format].startsWith('//')) {
+          urls[format] = '/' + urls[format];
+        } else if (pub.startsWith('http://') && !urls[format].startsWith('http://')) {
+          urls[format] = urls[format].replace('http:/', 'http://');
+        } else if (pub.startsWith('https://') && !urls[format].startsWith('https://')) {
+          urls[format] = urls[format].replace('https:/', 'https://');
+        }
 
         if (generatorConfiguration.dest) {
           this.emitFile(urls[format], res[format]);
