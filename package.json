@@ -31,10 +31,5 @@
     "semistandard": "*",
     "style-loader": "^0.13.2",
     "url-loader": "^0.5.8"
-  },
-  "semistandard": {
-    "ignore": [
-      "**/node_modules/"
-    ]
   }
 }
