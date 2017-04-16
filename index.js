@@ -57,12 +57,8 @@ function getFilesAndDeps (patterns, context) {
 
 // Futureproof webpack option parsing
 function wpGetOptions (context) {
-  if (typeof context.query === 'string') {
-    if (loaderUtils.getOptions) { return loaderUtils.getOptions(context); }
-    if (loaderUtils.parseQuery) { return loaderUtils.parseQuery(context.query); }
-  } else {
-    return context.query;
-  }
+  if (typeof context.query === 'string') return loaderUtils.getOptions(context);
+  return context.query;
 }
 
 module.exports = function (content) {
