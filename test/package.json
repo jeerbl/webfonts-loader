@@ -9,9 +9,9 @@
     "octicons": "^5.0.1"
   },
   "devDependencies": {
-    "css-loader": "^0.26.2",
+    "css-loader": "^0.28.0",
     "rimraf": "^2.6.1",
-    "style-loader": "^0.13.2",
+    "style-loader": "^0.16.1",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.4.1"
   },
