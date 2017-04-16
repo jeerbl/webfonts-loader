@@ -26,10 +26,10 @@
     "webfonts-generator": "^0.4.0"
   },
   "devDependencies": {
-    "css-loader": "^0.26.2",
-    "file-loader": "^0.10.1",
+    "css-loader": "^0.28.0",
+    "file-loader": "^0.11.1",
     "semistandard": "*",
-    "style-loader": "^0.13.2",
+    "style-loader": "^0.16.1",
     "url-loader": "^0.5.8"
   },
   "semistandard": {
