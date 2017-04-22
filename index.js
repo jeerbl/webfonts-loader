@@ -95,7 +95,11 @@ module.exports = function (content) {
     },
     dest: '',
     writeFiles: false,
-    formatOptions: config.formatOptions || {}
+    formatOptions: config.formatOptions || {
+      ttf: {
+        ts: 0 // it's important to set timestamp to fixed value for ttf generation to have consistent output in long term with the same hash
+      }
+    }
   };
 
   // Try to get additional options from webpack query string or font config file
