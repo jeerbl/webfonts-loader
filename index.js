@@ -197,7 +197,7 @@ module.exports = function (content) {
         urls[format] = 'data:' +
           mimeTypes[format] +
           ';charset=utf-8;base64,' +
-          (new Buffer(res[format]).toString('base64'));
+          (Buffer.from(res[format]).toString('base64'));
       }
     }
     cb(null, res.generateCss(urls));
