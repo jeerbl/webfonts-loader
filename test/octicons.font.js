@@ -1,6 +1,6 @@
 module.exports = {
   'files': [
-    'node_modules/octicons/build/svg/*.svg'
+    './test-svg/*.svg'
   ],
   'fontName': 'octicons',
   'classPrefix': 'octicon-',

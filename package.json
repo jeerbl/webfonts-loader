@@ -5,7 +5,7 @@
   "repository": "jeerbl/webfonts-loader",
   "main": "index.js",
   "scripts": {
-    "test": "semistandard && cd test && npm install && npm test"
+    "test": "npm install && semistandard && cd test &&npm test"
   },
   "keywords": [
     "font",
@@ -21,6 +21,7 @@
   "license": "Unlicense",
   "dependencies": {
     "glob": "^7.1.1",
+    "hash-files": "^1.1.1",
     "is-url": "^1.2.2",
     "loader-utils": "^1.0.2",
     "webfonts-generator": "^0.4.0"
