@@ -4,6 +4,7 @@ var path = require('path');
 var glob = require('glob');
 var isUrl = require('is-url');
 var url = require('url');
+var hashFiles = require('./utils').hashFiles;
 
 var mimeTypes = {
   'eot': 'application/vnd.ms-fontobject',
@@ -168,8 +169,10 @@ module.exports = function (content) {
     for (var i in formats) {
       var format = formats[i];
       if (!embed) {
-        var filename = config.fileName || params.fileName || '[hash]-[fontname].[ext]';
+        var filename = config.fileName || params.fileName || '[chunkhash]-[fontname].[ext]';
+        var chunkHash = filename.indexOf('[chunkhash]') !== -1 ? hashFiles(generatorConfiguration.files, params.hashLength) : '';
         filename = filename
+          .replace('[chunkhash]', chunkHash)
           .replace('[fontname]', generatorConfiguration.fontName)
           .replace('[ext]', format);
         var formatUrl = loaderUtils.interpolateName(this,
