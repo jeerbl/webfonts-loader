@@ -100,7 +100,12 @@ You also can use a module like `glob` to pick up a variable set of icons, too. M
 ## Loader parameters
 
 - `embed`, Boolean
-Should the fonts be embedded in the CSS? By default the fonts are written to disk. If `embed` is specified the font is base64 encoded and embedded inside the `@font-face` declaration. Example configuration: `loader: "style!css!webfonts?embed&types=woff"`.
+Should the fonts be embedded in the CSS? By default the fonts are written to disk. If `embed` is specified the font is base64 encoded and embedded inside the `@font-face` declaration.
+
+- `hashLength`, Number
+Optional. The length of hash in fileName, maximum value: 32, minimal value: 8.
+
+Example configuration: `loader: "style!css!webfonts?embed&types=woff&hashLength=8"`.
 
 ## Font configuration (`*.font.js` or `*.font.json`)
 
@@ -130,3 +135,4 @@ There is one special configuration optin that exists in both, the actual font co
 - `[fontname]`: The name of the font. I.e. "Awesomefont".
 - `[ext]`: The extension. I.e.: `.woff`.
 - `[hash]`: The hash of your current compilation.
+- `[chunkhash]`: The hash of your source svg files.
