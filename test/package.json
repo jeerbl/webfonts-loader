@@ -3,12 +3,10 @@
   "private": true,
   "main": "entry.js",
   "scripts": {
-    "test": "rimraf ./dist && webpack"
-  },
-  "dependencies": {
-    "octicons": "^5.0.1"
+    "test": "rimraf ./dist && webpack && ava -v ./ava.js"
   },
   "devDependencies": {
+    "ava": "^0.21.0",
     "css-loader": "^0.28.0",
     "rimraf": "^2.6.1",
     "style-loader": "^0.18.1",
