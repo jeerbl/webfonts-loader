@@ -57,10 +57,8 @@ require('./myfont.font');
 ```
 
 The loader will then generate:
-* CSS with the base and class prefix.
-* Font files for the SVG icons.
-
-And there you are - your webfont is done. Now, here is one thing: You can use JavaScript too. A useful thing is, that there are two additional options that I did not mention:
+* CSS with the base and class prefix
+* Font files for the SVG icons
 
 #### All font configuration options
 
