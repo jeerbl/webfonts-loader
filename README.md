@@ -1,138 +1,105 @@
-### __This repository has been dumped from [DragonsInn/fontgen-loader](https://github.com/DragonsInn/fontgen-loader) since it wasn't updated since March 2016.__
-
-
-# `webfonts-loader` - Bam, easy webfonts!
-
-[![js-semistandard-style](https://cdn.rawgit.com/flet/semistandard/master/badge.svg)](https://github.com/Flet/semistandard)
-
+# webfonts-loader
 [![npm](https://img.shields.io/npm/v/webfonts-loader.svg?style=flat-square)](https://www.npmjs.com/package/webfonts-loader)
 [![Travis](https://img.shields.io/travis/jeerbl/webfonts-loader.svg?style=flat-square)](https://travis-ci.org/jeerbl/webfonts-loader)
 [![license](https://img.shields.io/github/license/jeerbl/webfonts-loader.svg?style=flat-square)](https://github.com/jeerbl/webfonts-loader/blob/master/LICENSE)
 
-Have you faced this? You have 4 icons from FontAwesome, and 19 from Glyphicons, and maybe you are eying at another webfont's icons and wishing to use them?
+A loader that generates fonts from your SVG icons and allows you to use your icons in your HTML.
 
-What a mess! Okay okay, so what do we do? We make our own. And how? ...good question. In fact, this question comes up just so often... So I decided to write a little thing to help out.
+`webfonts-loader` uses the [`webfonts-generator`](https://github.com/sunflowerdeath/webfonts-generator) plugin to create fonts in any format. It also generates CSS files so that you can use your icons directly in your HTML, using CSS classes.
 
-## How `webfonts-loader` works.
-There is a tool that lets us generate fonts automaticaly by a configuration. The font is created by putting several SVG icons together and generating the proper file(s). That includes:
-
-- A font file for WOF, EOT, TTF and WOFF2. Also SVG, if you want. But there is a trend of removal within browsers - you can see more on [caniuse](http://caniuse.com).
-- A CSS has your font configured. That means, it's a proper `@font-face` declaration inclusive icon classes.
-- If you want, a HTML demo page.
-
-In order to use this loader, you need to be aware that this is a "trigger loader". That means, it can not just be added to your `webpack.config.js` like any other loader, you need to be aware of what it does in the long run.
-
-## configuration
-
-```javascript
-module.exports = {
-  resolve: {
-    loaders: [
-      {
-        test: /\.font\.(js|json)$/,
-        loader: "style!css!webfonts"
-      }
-    ]
-  }
-}
+## Installation
 ```
-
-This loader returns CSS. Therefore, you have to pipe it through the proper loaders. You should be able to use this with the `extract-text-plugin` as well.
-
-However, there are more configurations. you could also specify a custom template to use, to return different kinds of source. A LESS or SCSS version, for instance? Up to you.
+npm install webfonts-loader
+```
 
 ## Usage
+An example of usage can be found in the `test/` directory of this repository.
 
-Now that we have the loader configured, it's about time we give this a go. First, you want to load your font like so, within your entry code:
-
+### Webpack rule
+Add this rule to your Webpack config:
 ```javascript
-// main.js
-require("./Awesomecons.font"); // .js or .json does not matter if you used the config above.
-```
-
-Now, the loader will load in the font from the given configuration, and the CSS is added to your webpack project, properly rendered and prepared. Now, this is what a configuration should look like. The following is an example, and I am using JSON here, since I know that my code is more static, but you may have a varying requirement, which is why JS will be allowed. Make sure the configuration ends up being the contents of `module.exports`.
-
-Example:
-
-module style
-```javascript
-module.exports = {
-  "files": [
-    "icon/my.svg",
-    "icon/awesome.svg",
-    "icon/stuff.svg",
-    "icon/special/*.svg" // glob style
-  ],
-  "fontName": "Awesomecons",
-  "classPrefix": "ai-",
-  "baseSelector": ".ai",
-  "fixedWidth": true,
-  "types": ["eot", "woff", "ttf", "svg"] // this is the default
-}
-```
-
-or .json (content should be an object)
-```json
 {
-  "files": []
+  test: /\.font\.js/,
+  loader: ExtractTextPlugin.extract({
+    use: [
+      'style-loader',
+      'css-loader',
+      'webfonts-loader'
+    ]
+  })
 }
 ```
+So that each font configuration file will be loaded using this rule.
 
+### The font configuration file
+The config file allows you to specify parameters for the loader to use. Here is an example configuration file:
+```javascript
+// myfont.font.js
+module.exports = {
+  'files': [
+    './myfont/*.svg'
+  ],
+  'fontName': 'myfonticons',
+  'classPrefix': 'myfonticon-',
+  'baseSelector': '.myfonticon',
+  'types': ['eot', 'woff', 'woff2', 'ttf', 'svg'],
+  'fileName': 'app.[fontname].[hash].[ext]'
+};
+```
 
+Then you have to require the configuration file:
+```javascript
+// entry.js
+require('./myfont.font');
+```
 
-Now, the loader will pick up this config, pull it through the generator and:
-
-- Generate CSS with the base and class prefix.
-- Font files for the three SVG icons.
+The loader will then generate:
+* CSS with the base and class prefix.
+* Font files for the SVG icons.
 
 And there you are - your webfont is done. Now, here is one thing: You can use JavaScript too. A useful thing is, that there are two additional options that I did not mention:
 
-In addition, you also have these options:
+### All font configuration options
 
-- `.rename`: This should be a function that returns the icon's name based on the input (filename).
-- `.log`: You can log stuff here.
-- `.formatOptions`: An object containing options to their specific transformers. See [this PR](https://github.com/sunflowerdeath/webfonts-generator/pull/6) and [this README entry](https://github.com/sunflowerdeath/webfonts-generator#formatoptions) to learn more.
-
-You also can use a module like `glob` to pick up a variable set of icons, too. Mix and match and mind the various licenses - and make your own webfont!
-
-
-# Configuration
-## Loader parameters
-
-- `embed`, Boolean
-Should the fonts be embedded in the CSS? By default the fonts are written to disk. If `embed` is specified the font is base64 encoded and embedded inside the `@font-face` declaration.
-
-- `hashLength`, Number
-Optional. The length of hash in fileName, maximum value: 32, minimal value: 8.
-
-Example configuration: `loader: "style!css!webfonts?embed&types=woff&hashLength=8"`.
-
-## Font configuration (`*.font.js` or `*.font.json`)
-
-- `baseSelector`, String
+* `baseSelector`, String
 The base CSS selector, under which each icon class is to be created.
+See [webfonts-generator#templateoptions](https://github.com/sunflowerdeath/webfonts-generator#templateoptions)
 
-- `classPrefix`, String
+* `classPrefix`, String
 The prefix to be used with each icon class.
+See [webfonts-generator#templateoptions](https://github.com/sunflowerdeath/webfonts-generator#templateoptions)
 
-- `cssTemplate`, String
-Which template to use? By default, a CSS one is used. The template is to be processed by Handlebars. See [webfonts-generator](https://github.com/sunflowerdeath/webfonts-generator)'s README itself for more info.
+* `cssTemplate`, String
+See [webfonts-generator#csstemplate](https://github.com/sunflowerdeath/webfonts-generator#csstemplate)
 
-- `files`, Array
-An array of SVG icon files. Supports glob
+* `embed`, Boolean
+If true the font is encoded in base64 and embedded inside the `@font-face` declaration, otherwise font files are written to disk.
+Default: `false`
 
-- `fontName`, String
-Name of your font.
+* `hashLength`, Number
+Optional. The length of hash in `fileName`.
+Min: 8
+Max: 32
+Default: 20
 
-- `types`, Array
-Possible values are: `["svg", "eot", "wof", "ttf"]`.
+* `fileName`, String
+The generated font file names. These elements can be used:
+  * `[fontname]`: the value of the `fontName` parameter
+  * `[ext]`: the extension of the font file being generated (`eot`, ...)
+  * `[hash]`: the hash of the current compilation
+  * `[chunkhash]`: the hash of the SVG files
 
-For additional options, see the [webfonts-generator](https://github.com/sunflowerdeath/webfonts-generator)'s README file.
+* `files`, Array
+See [webfonts-generator#files](https://github.com/sunflowerdeath/webfonts-generator#files)
 
-### Special configuration
-There is one special configuration optin that exists in both, the actual font configuration and as a query parameter: `fileName`. This one decides the output of the font filenames. You can create a filename template with these elements (will likely become more in the future):
+* `fontName`, String
+See [webfonts-generator#fontname](https://github.com/sunflowerdeath/webfonts-generator#fontname)
 
-- `[fontname]`: The name of the font. I.e. "Awesomefont".
-- `[ext]`: The extension. I.e.: `.woff`.
-- `[hash]`: The hash of your current compilation.
-- `[chunkhash]`: The hash of your source svg files.
+* `formatOptions`, Object
+See [webfonts-generator#formatoptions](https://github.com/sunflowerdeath/webfonts-generator#formatoptions)
+
+* `rename`, Function
+See [webfonts-generator#rename](https://github.com/sunflowerdeath/webfonts-generator#rename)
+
+* `types`, Array<String>
+See [webfonts-generator#types](https://github.com/sunflowerdeath/webfonts-generator#types)
