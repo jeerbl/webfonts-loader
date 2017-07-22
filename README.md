@@ -32,6 +32,9 @@ Add this rule to your Webpack config:
 So that each font configuration file will be loaded using this rule.
 
 ### The font configuration file
+
+#### Description
+
 The config file allows you to specify parameters for the loader to use. Here is an example configuration file:
 ```javascript
 // myfont.font.js
@@ -59,47 +62,47 @@ The loader will then generate:
 
 And there you are - your webfont is done. Now, here is one thing: You can use JavaScript too. A useful thing is, that there are two additional options that I did not mention:
 
-### All font configuration options
+#### All font configuration options
 
-* `baseSelector`, String
+##### `baseSelector`, String
 The base CSS selector, under which each icon class is to be created.
 See [webfonts-generator#templateoptions](https://github.com/sunflowerdeath/webfonts-generator#templateoptions)
 
-* `classPrefix`, String
+##### `classPrefix`, String
 The prefix to be used with each icon class.
 See [webfonts-generator#templateoptions](https://github.com/sunflowerdeath/webfonts-generator#templateoptions)
 
-* `cssTemplate`, String
+##### `cssTemplate`, String
 See [webfonts-generator#csstemplate](https://github.com/sunflowerdeath/webfonts-generator#csstemplate)
 
-* `embed`, Boolean
+##### `embed`, Boolean
 If true the font is encoded in base64 and embedded inside the `@font-face` declaration, otherwise font files are written to disk.
 Default: `false`
 
-* `hashLength`, Number
+##### `hashLength`, Number
 Optional. The length of hash in `fileName`.
 Min: 8
 Max: 32
 Default: 20
 
-* `fileName`, String
+##### `fileName`, String
 The generated font file names. These elements can be used:
-  * `[fontname]`: the value of the `fontName` parameter
-  * `[ext]`: the extension of the font file being generated (`eot`, ...)
-  * `[hash]`: the hash of the current compilation
-  * `[chunkhash]`: the hash of the SVG files
+* `[fontname]`: the value of the `fontName` parameter
+* `[ext]`: the extension of the font file being generated (`eot`, ...)
+* `[hash]`: the hash of the current compilation
+* `[chunkhash]`: the hash of the SVG files
 
-* `files`, Array
+##### `files`, Array
 See [webfonts-generator#files](https://github.com/sunflowerdeath/webfonts-generator#files)
 
-* `fontName`, String
+##### `fontName`, String
 See [webfonts-generator#fontname](https://github.com/sunflowerdeath/webfonts-generator#fontname)
 
-* `formatOptions`, Object
+##### `formatOptions`, Object
 See [webfonts-generator#formatoptions](https://github.com/sunflowerdeath/webfonts-generator#formatoptions)
 
-* `rename`, Function
+##### `rename`, Function
 See [webfonts-generator#rename](https://github.com/sunflowerdeath/webfonts-generator#rename)
 
-* `types`, Array<String>
+##### `types`, Array<String>
 See [webfonts-generator#types](https://github.com/sunflowerdeath/webfonts-generator#types)
