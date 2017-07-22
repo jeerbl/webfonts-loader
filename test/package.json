@@ -3,7 +3,7 @@
   "private": true,
   "main": "entry.js",
   "scripts": {
-    "test": "rimraf ./dist && webpack && ava -v ./ava.js"
+    "test": "rimraf ./dist && ava -v ./ava.js && webpack"
   },
   "devDependencies": {
     "ava": "^0.21.0",
