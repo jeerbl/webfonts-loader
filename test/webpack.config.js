@@ -16,7 +16,7 @@ module.exports = {
         use: [
           'style-loader',
           'css-loader',
-          require.resolve('../') // Replace this line with 'webfonts-loader'
+          require.resolve('../') // Replace this line with require('webfonts-loader')
         ]
       }
     ]
