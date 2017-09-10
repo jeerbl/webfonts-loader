@@ -95,7 +95,7 @@ module.exports = function (content) {
       classPrefix: 'classPrefix' in config ? config.classPrefix : 'icon-'
     },
     dest: '',
-    writeFiles: false,
+    writeFiles: config.embed || false,
     formatOptions: config.formatOptions || {}
   };
 
@@ -151,7 +151,8 @@ module.exports = function (content) {
   var pub = (
     generatorConfiguration.dest || (opts.output && opts.output.publicPath) || '/'
   );
-  var embed = !!params.embed;
+
+  var embed = !!generatorConfiguration.writeFiles;
 
   if (generatorConfiguration.cssTemplate) {
     this.addDependency(generatorConfiguration.cssTemplate);
@@ -168,6 +169,7 @@ module.exports = function (content) {
     var urls = {};
     for (var i in formats) {
       var format = formats[i];
+
       if (!embed) {
         var filename = config.fileName || params.fileName || '[chunkhash]-[fontname].[ext]';
         var chunkHash = filename.indexOf('[chunkhash]') !== -1 ? hashFiles(generatorConfiguration.files, params.hashLength) : '';
