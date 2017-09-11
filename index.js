@@ -152,7 +152,6 @@ module.exports = function (content) {
   var pub = (
     generatorConfiguration.dest || (opts.output && opts.output.publicPath) || '/'
   );
-
   var embed = !!generatorConfiguration.embed;
 
   if (generatorConfiguration.cssTemplate) {
@@ -168,13 +167,11 @@ module.exports = function (content) {
       return cb(err);
     }
     var urls = {};
-
     for (var i in formats) {
-      var format = formats[i],
-          filename = config.fileName || params.fileName || '[chunkhash]-[fontname].[ext]',
-
-          chunkHash = filename.indexOf('[chunkhash]') !== -1 ?
-            hashFiles(generatorConfiguration.files, params.hashLength) : '';
+      var format = formats[i];
+      var filename = config.fileName || params.fileName || '[chunkhash]-[fontname].[ext]';
+      var chunkHash = filename.indexOf('[chunkhash]') !== -1
+            ? hashFiles(generatorConfiguration.files, params.hashLength) : '';
 
       filename = filename
                   .replace('[chunkhash]', chunkHash)
@@ -196,23 +193,18 @@ module.exports = function (content) {
       }
 
       if (!embed) {
-
         if (isUrl(pub)) {
           urls[format] = url.resolve(pub, formatUrl);
         } else {
           urls[format] = path.join(pub, formatUrl);
         }
         urls[format] = urls[format].replace(/\\/g, '/');
-
       } else {
-
         urls[format] = 'data:' +
         mimeTypes[format] +
         ';charset=utf-8;base64,' +
         (Buffer.from(res[format]).toString('base64'));
-
       }
-
     }
 
     cb(null, res.generateCss(urls));
