@@ -95,7 +95,8 @@ module.exports = function (content) {
       classPrefix: 'classPrefix' in config ? config.classPrefix : 'icon-'
     },
     dest: '',
-    writeFiles: config.embed || false,
+    writeFiles: false,
+    embed: config.embed || false,
     formatOptions: config.formatOptions || {}
   };
 
@@ -152,7 +153,7 @@ module.exports = function (content) {
     generatorConfiguration.dest || (opts.output && opts.output.publicPath) || '/'
   );
 
-  var embed = !!generatorConfiguration.writeFiles;
+  var embed = !!generatorConfiguration.embed;
 
   if (generatorConfiguration.cssTemplate) {
     this.addDependency(generatorConfiguration.cssTemplate);
@@ -167,44 +168,53 @@ module.exports = function (content) {
       return cb(err);
     }
     var urls = {};
+
     for (var i in formats) {
-      var format = formats[i];
+      var format = formats[i],
+          filename = config.fileName || params.fileName || '[chunkhash]-[fontname].[ext]',
+
+          chunkHash = filename.indexOf('[chunkhash]') !== -1 ?
+            hashFiles(generatorConfiguration.files, params.hashLength) : '';
+
+      filename = filename
+                  .replace('[chunkhash]', chunkHash)
+                  .replace('[fontname]', generatorConfiguration.fontName)
+                  .replace('[ext]', format);
+
+      var formatUrl = loaderUtils.interpolateName(this,
+        filename,
+        {
+          context: this.options.context || this.context,
+          content: res[format]
+        }
+      );
+
+      if (generatorConfiguration.dest) {
+        this.emitFile(urls[format], res[format]);
+      } else {
+        this.emitFile(formatUrl, res[format]);
+      }
 
       if (!embed) {
-        var filename = config.fileName || params.fileName || '[chunkhash]-[fontname].[ext]';
-        var chunkHash = filename.indexOf('[chunkhash]') !== -1 ? hashFiles(generatorConfiguration.files, params.hashLength) : '';
-        filename = filename
-          .replace('[chunkhash]', chunkHash)
-          .replace('[fontname]', generatorConfiguration.fontName)
-          .replace('[ext]', format);
-        var formatUrl = loaderUtils.interpolateName(this,
-          filename,
-          {
-            context: this.options.context || this.context,
-            content: res[format]
-          }
-        );
 
         if (isUrl(pub)) {
           urls[format] = url.resolve(pub, formatUrl);
         } else {
           urls[format] = path.join(pub, formatUrl);
         }
-
         urls[format] = urls[format].replace(/\\/g, '/');
 
-        if (generatorConfiguration.dest) {
-          this.emitFile(urls[format], res[format]);
-        } else {
-          this.emitFile(formatUrl, res[format]);
-        }
       } else {
+
         urls[format] = 'data:' +
-          mimeTypes[format] +
-          ';charset=utf-8;base64,' +
-          (Buffer.from(res[format]).toString('base64'));
+        mimeTypes[format] +
+        ';charset=utf-8;base64,' +
+        (Buffer.from(res[format]).toString('base64'));
+
       }
+
     }
+
     cb(null, res.generateCss(urls));
   });
 };
