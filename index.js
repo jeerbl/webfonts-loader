@@ -96,6 +96,7 @@ module.exports = function (content) {
     },
     dest: '',
     writeFiles: false,
+    embed: config.embed || false,
     formatOptions: config.formatOptions || {}
   };
 
@@ -151,7 +152,7 @@ module.exports = function (content) {
   var pub = (
     generatorConfiguration.dest || (opts.output && opts.output.publicPath) || '/'
   );
-  var embed = !!params.embed;
+  var embed = !!generatorConfiguration.embed;
 
   if (generatorConfiguration.cssTemplate) {
     this.addDependency(generatorConfiguration.cssTemplate);
@@ -168,41 +169,44 @@ module.exports = function (content) {
     var urls = {};
     for (var i in formats) {
       var format = formats[i];
-      if (!embed) {
-        var filename = config.fileName || params.fileName || '[chunkhash]-[fontname].[ext]';
-        var chunkHash = filename.indexOf('[chunkhash]') !== -1 ? hashFiles(generatorConfiguration.files, params.hashLength) : '';
-        filename = filename
-          .replace('[chunkhash]', chunkHash)
-          .replace('[fontname]', generatorConfiguration.fontName)
-          .replace('[ext]', format);
-        var formatUrl = loaderUtils.interpolateName(this,
-          filename,
-          {
-            context: this.options.context || this.context,
-            content: res[format]
-          }
-        );
+      var filename = config.fileName || params.fileName || '[chunkhash]-[fontname].[ext]';
+      var chunkHash = filename.indexOf('[chunkhash]') !== -1
+            ? hashFiles(generatorConfiguration.files, params.hashLength) : '';
 
+      filename = filename
+                  .replace('[chunkhash]', chunkHash)
+                  .replace('[fontname]', generatorConfiguration.fontName)
+                  .replace('[ext]', format);
+
+      var formatUrl = loaderUtils.interpolateName(this,
+        filename,
+        {
+          context: this.options.context || this.context,
+          content: res[format]
+        }
+      );
+
+      if (generatorConfiguration.dest) {
+        this.emitFile(urls[format], res[format]);
+      } else {
+        this.emitFile(formatUrl, res[format]);
+      }
+
+      if (!embed) {
         if (isUrl(pub)) {
           urls[format] = url.resolve(pub, formatUrl);
         } else {
           urls[format] = path.join(pub, formatUrl);
         }
-
         urls[format] = urls[format].replace(/\\/g, '/');
-
-        if (generatorConfiguration.dest) {
-          this.emitFile(urls[format], res[format]);
-        } else {
-          this.emitFile(formatUrl, res[format]);
-        }
       } else {
         urls[format] = 'data:' +
-          mimeTypes[format] +
-          ';charset=utf-8;base64,' +
-          (Buffer.from(res[format]).toString('base64'));
+        mimeTypes[format] +
+        ';charset=utf-8;base64,' +
+        (Buffer.from(res[format]).toString('base64'));
       }
     }
+
     cb(null, res.generateCss(urls));
   });
 };
