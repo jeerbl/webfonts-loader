@@ -2,7 +2,6 @@ var loaderUtils = require('loader-utils');
 var webfontsGenerator = require('webfonts-generator');
 var path = require('path');
 var glob = require('glob');
-var isUrl = require('is-url');
 var url = require('url');
 var hashFiles = require('./utils').hashFiles;
 
@@ -65,15 +64,15 @@ function wpGetOptions (context) {
 module.exports = function (content) {
   this.cacheable();
 
-  var webpackOptions = this.options || {};
-  var options = wpGetOptions(this);
+  var webpackOptions = this.options || {}; // only makes sense in Webpack 1.x, or when LoaderOptionsPlugin is used
+  var options = wpGetOptions(this) || {};
   var rawFontConfig;
   try {
     rawFontConfig = JSON.parse(content);
   } catch (ex) {
     rawFontConfig = this.exec(content, this.resourcePath);
   }
-  var fontConfig = Object.assign({}, options, rawFontConfig)
+  var fontConfig = Object.assign({}, options, rawFontConfig);
 
   var filesAndDeps = getFilesAndDeps(fontConfig.files, this.context);
   filesAndDeps.dependencies.files.forEach(this.addDependency.bind(this));
