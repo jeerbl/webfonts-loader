@@ -64,69 +64,62 @@ function wpGetOptions (context) {
 
 module.exports = function (content) {
   this.cacheable();
-  var params = loaderUtils.getOptions(this) || {};
-  var config;
-  try {
-    config = JSON.parse(content);
-  } catch (ex) {
-    config = this.exec(content, this.resourcePath);
-  }
 
-  var filesAndDeps = getFilesAndDeps(config.files, this.context);
+  var webpackOptions = this.options || {};
+  var options = wpGetOptions(this);
+  var rawFontConfig;
+  try {
+    rawFontConfig = JSON.parse(content);
+  } catch (ex) {
+    rawFontConfig = this.exec(content, this.resourcePath);
+  }
+  var fontConfig = Object.assign({}, options, rawFontConfig)
+
+  var filesAndDeps = getFilesAndDeps(fontConfig.files, this.context);
   filesAndDeps.dependencies.files.forEach(this.addDependency.bind(this));
   filesAndDeps.dependencies.directories.forEach(this.addContextDependency.bind(this));
-  config.files = filesAndDeps.files;
+  fontConfig.files = filesAndDeps.files;
 
   // With everything set up, let's make an ACTUAL config.
-  var formats = config.types || ['eot', 'woff', 'woff2', 'ttf', 'svg'];
+  var formats = fontConfig.types || ['eot', 'woff', 'woff2', 'ttf', 'svg'];
   if (formats.constructor !== Array) {
     formats = [formats];
   }
 
-  var generatorConfiguration = {
-    files: config.files,
-    fontName: config.fontName,
+  var generatorOptions = {
+    files: fontConfig.files,
+    fontName: fontConfig.fontName,
     types: formats,
     order: formats,
-    fontHeight: config.fontHeight || 1000, // Fixes conversion issues with small svgs,
-    codepoints: config.codepoints || {},
+    fontHeight: fontConfig.fontHeight || 1000, // Fixes conversion issues with small svgs,
+    codepoints: fontConfig.codepoints || {},
     templateOptions: {
-      baseSelector: config.baseSelector || '.icon',
-      classPrefix: 'classPrefix' in config ? config.classPrefix : 'icon-'
+      baseSelector: fontConfig.baseSelector || '.icon',
+      classPrefix: 'classPrefix' in fontConfig ? fontConfig.classPrefix : 'icon-'
     },
     dest: '',
     writeFiles: false,
-    embed: config.embed || false,
-    formatOptions: config.formatOptions || {}
+    embed: fontConfig.embed || false,
+    formatOptions: fontConfig.formatOptions || {}
   };
-
-  // Try to get additional options from webpack query string or font config file
-  Object.assign(generatorConfiguration, wpGetOptions(this));
-  Object.assign(generatorConfiguration, config);
 
   // This originally was in the object notation itself.
   // Unfortunately that actually broke my editor's syntax-highlighting...
   // ... what a shame.
-  if (typeof config.rename === 'function') {
-    generatorConfiguration.rename = config.rename;
+  if (typeof fontConfig.rename === 'function') {
+    generatorOptions.rename = fontConfig.rename;
   } else {
-    generatorConfiguration.rename = function (f) {
+    generatorOptions.rename = function (f) {
       return path.basename(f, '.svg');
     };
   }
 
-  if (config.cssTemplate) {
-    generatorConfiguration.cssTemplate = path.resolve(this.context, config.cssTemplate);
+  if (fontConfig.cssTemplate) {
+    generatorOptions.cssTemplate = path.resolve(this.context, fontConfig.cssTemplate);
   }
 
-  if (config.cssFontsPath) {
-    generatorConfiguration.cssFontsPath = path.resolve(this.context, config.cssFontsPath);
-  }
-
-  for (var option in config.templateOptions) {
-    if (config.templateOptions.hasOwnProperty(option)) {
-      generatorConfiguration.templateOptions[option] = config.templateOptions[option];
-    }
+  if (fontConfig.cssFontsPath) {
+    generatorOptions.cssFontsPath = path.resolve(this.context, fontConfig.cssFontsPath);
   }
 
   // svgicons2svgfont stuff
@@ -139,66 +132,50 @@ module.exports = function (content) {
     'descent'
   ];
   for (var x in keys) {
-    if (typeof config[keys[x]] !== 'undefined') {
-      generatorConfiguration[keys[x]] = config[keys[x]];
+    if (typeof fontConfig[keys[x]] !== 'undefined') {
+      generatorOptions[keys[x]] = fontConfig[keys[x]];
     }
   }
 
   var cb = this.async();
 
-  // Generate destination path for font files, dest option from options takes precedence
-  var opts = this.options || {};
+  var publicPath = options.publicPath || (webpackOptions.output && webpackOptions.output.publicPath) || '/';
+  var embed = !!generatorOptions.embed;
 
-  var pub = (
-    generatorConfiguration.dest || (opts.output && opts.output.publicPath) || '/'
-  );
-  var embed = !!generatorConfiguration.embed;
-
-  if (generatorConfiguration.cssTemplate) {
-    this.addDependency(generatorConfiguration.cssTemplate);
+  if (generatorOptions.cssTemplate) {
+    this.addDependency(generatorOptions.cssTemplate);
   }
 
-  if (generatorConfiguration.cssFontsPath) {
-    this.addDependency(generatorConfiguration.cssFontsPath);
+  if (generatorOptions.cssFontsPath) {
+    this.addDependency(generatorOptions.cssFontsPath);
   }
 
-  webfontsGenerator(generatorConfiguration, (err, res) => {
+  webfontsGenerator(generatorOptions, (err, res) => {
     if (err) {
       return cb(err);
     }
     var urls = {};
     for (var i in formats) {
       var format = formats[i];
-      var filename = config.fileName || params.fileName || '[chunkhash]-[fontname].[ext]';
+      var filename = fontConfig.fileName || options.fileName || '[chunkhash]-[fontname].[ext]';
       var chunkHash = filename.indexOf('[chunkhash]') !== -1
-            ? hashFiles(generatorConfiguration.files, params.hashLength) : '';
+            ? hashFiles(generatorOptions.files, options.hashLength) : '';
 
       filename = filename
                   .replace('[chunkhash]', chunkHash)
-                  .replace('[fontname]', generatorConfiguration.fontName)
+                  .replace('[fontname]', generatorOptions.fontName)
                   .replace('[ext]', format);
 
-      var formatUrl = loaderUtils.interpolateName(this,
-        filename,
-        {
-          context: this.options.context || this.context,
-          content: res[format]
-        }
-      );
-
-      if (generatorConfiguration.dest) {
-        this.emitFile(urls[format], res[format]);
-      } else {
-        this.emitFile(formatUrl, res[format]);
-      }
-
       if (!embed) {
-        if (isUrl(pub)) {
-          urls[format] = url.resolve(pub, formatUrl);
-        } else {
-          urls[format] = path.join(pub, formatUrl);
-        }
-        urls[format] = urls[format].replace(/\\/g, '/');
+        var formatFilename = loaderUtils.interpolateName(this,
+          filename,
+          {
+            context: this.options.context || this.context,
+            content: res[format]
+          }
+        );
+        urls[format] = url.resolve(publicPath, formatFilename.replace(/\\/g, '/'));
+        this.emitFile(formatFilename, res[format]);
       } else {
         urls[format] = 'data:' +
         mimeTypes[format] +
