@@ -4,7 +4,7 @@
 [![Travis](https://img.shields.io/travis/jeerbl/webfonts-loader.svg?style=flat-square)](https://travis-ci.org/jeerbl/webfonts-loader)
 [![license](https://img.shields.io/github/license/jeerbl/webfonts-loader.svg?style=flat-square)](https://github.com/jeerbl/webfonts-loader/blob/master/LICENSE)
 
-A loader that generates fonts from your SVG icons and allows you to use your icons in your HTML.
+A Webpack loader that generates fonts from your SVG icons and allows you to use your icons in your HTML.
 
 `webfonts-loader` uses the [`webfonts-generator`](https://github.com/sunflowerdeath/webfonts-generator) plugin to create fonts in any format. It also generates CSS files so that you can use your icons directly in your HTML, using CSS classes.
 
