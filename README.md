@@ -1,6 +1,7 @@
 # webfonts-loader
 
 [![npm](https://img.shields.io/npm/v/webfonts-loader.svg?style=flat-square)](https://www.npmjs.com/package/webfonts-loader)
+[![npm](https://img.shields.io/npm/dm/webfonts-loader.svg?style=flat-square)](https://www.npmjs.com/package/webfonts-loader)
 [![Travis](https://img.shields.io/travis/jeerbl/webfonts-loader.svg?style=flat-square)](https://travis-ci.org/jeerbl/webfonts-loader)
 [![license](https://img.shields.io/github/license/jeerbl/webfonts-loader.svg?style=flat-square)](https://github.com/jeerbl/webfonts-loader/blob/master/LICENSE)
 
