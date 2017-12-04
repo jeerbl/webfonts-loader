@@ -5,7 +5,9 @@
   "repository": "jeerbl/webfonts-loader",
   "main": "index.js",
   "scripts": {
-    "test": "semistandard && cd test && npm install && npm test"
+    "test": "semistandard && cd test && npm install && npm test",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "keywords": [
     "font",
@@ -23,7 +25,8 @@
     "glob": "^7.1.1",
     "hash-files": "^1.1.1",
     "loader-utils": "^1.0.2",
-    "webfonts-generator": "^0.4.0"
+    "webfonts-generator": "^0.4.0",
+    "snyk": "^1.53.0"
   },
   "devDependencies": {
     "css-loader": "^0.28.0",
@@ -36,5 +39,6 @@
     "ignore": [
       "**/node_modules/"
     ]
-  }
+  },
+  "snyk": true
 }
