@@ -96,11 +96,19 @@ module.exports = function (content) {
       baseSelector: fontConfig.baseSelector || '.icon',
       classPrefix: 'classPrefix' in fontConfig ? fontConfig.classPrefix : 'icon-'
     },
-    dest: '',
-    writeFiles: false,
+    dest: fontConfig.dest ? fontConfig.dest : '',
+    html: fontConfig.html || false,
+    htmlDest: fontConfig.htmlDest || undefined,
+    writeFiles: fontConfig.writeFiles || false,
+    cssFontsUrl: fontConfig.cssFontsUrl || '',
     embed: fontConfig.embed || false,
     formatOptions: fontConfig.formatOptions || {}
   };
+
+  // Add key only if it exists in config object to avoid fs errors
+  if('htmlTemplate' in fontConfig){
+    generatorOptions.htmlTemplate = fontConfig.htmlTemplate;
+  }
 
   // This originally was in the object notation itself.
   // Unfortunately that actually broke my editor's syntax-highlighting...
