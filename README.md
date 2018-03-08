@@ -158,3 +158,23 @@ See [webfonts-generator#rename](https://github.com/sunflowerdeath/webfonts-gener
 ##### `types`, Array<String>
 
 See [webfonts-generator#types](https://github.com/sunflowerdeath/webfonts-generator#types)
+
+##### `dest`, String
+
+See [webfonts-generator#dest](https://github.com/sunflowerdeath/webfonts-generator#dest)
+
+##### `html`, Boolean
+
+See [webfonts-generator#html](https://github.com/sunflowerdeath/webfonts-generator#html)
+
+##### `htmlDest`, String
+
+See [webfonts-generator#htmldest](https://github.com/sunflowerdeath/webfonts-generator#htmldest)
+
+##### `writeFiles`, Boolean (default false)
+
+See [webfonts-generator#writefiles](https://github.com/sunflowerdeath/webfonts-generator#writefiles)
+
+##### `cssFontsUrl`, String (before cssFontsPath)
+
+See [webfonts-generator#cssfontspath](https://github.com/sunflowerdeath/webfonts-generator#cssfontspath)

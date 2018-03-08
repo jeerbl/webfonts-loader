@@ -96,8 +96,11 @@ module.exports = function (content) {
       baseSelector: fontConfig.baseSelector || '.icon',
       classPrefix: 'classPrefix' in fontConfig ? fontConfig.classPrefix : 'icon-'
     },
-    dest: '',
-    writeFiles: false,
+    dest: fontConfig.dest ? fontConfig.dest : '',
+    html: fontConfig.html || false,
+    htmlDest: fontConfig.htmlDest || undefined,
+    writeFiles: fontConfig.writeFiles || false,
+    cssFontsUrl: fontConfig.cssFontsUrl || '',
     embed: fontConfig.embed || false,
     formatOptions: fontConfig.formatOptions || {}
   };
