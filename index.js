@@ -105,6 +105,11 @@ module.exports = function (content) {
     formatOptions: fontConfig.formatOptions || {}
   };
 
+  // Add key only if it exists in config object to avoid fs errors
+  if('htmlTemplate' in fontConfig){
+    generatorOptions.htmlTemplate = fontConfig.htmlTemplate;
+  }
+
   // This originally was in the object notation itself.
   // Unfortunately that actually broke my editor's syntax-highlighting...
   // ... what a shame.

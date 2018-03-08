@@ -178,3 +178,13 @@ See [webfonts-generator#writefiles](https://github.com/sunflowerdeath/webfonts-g
 ##### `cssFontsUrl`, String (before cssFontsPath)
 
 See [webfonts-generator#cssfontspath](https://github.com/sunflowerdeath/webfonts-generator#cssfontspath)
+
+##### `htmlTemplate`, String
+#### Example
+```
+...
+htmlTemplate: path.resolve(__dirname, 'src/html.hbs'),
+...
+```
+
+See [webfonts-generator#htmltemplate](https://github.com/sunflowerdeath/webfonts-generator#htmltemplate)
