@@ -169,7 +169,7 @@ module.exports = function (content) {
         var formatFilename = loaderUtils.interpolateName(this,
           filename,
           {
-            context: this.options.context || this.context,
+            context: this.rootContext || this.options.context || this.context,
             content: res[format]
           }
         );
