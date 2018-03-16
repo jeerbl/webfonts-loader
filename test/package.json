@@ -3,14 +3,15 @@
   "private": true,
   "main": "entry.js",
   "scripts": {
-    "test": "rimraf ./dist && ava -v ./ava.js && webpack"
+    "test": "rimraf ./dist && ava -v ./ava.js && webpack --mode production"
   },
   "devDependencies": {
     "ava": "^0.21.0",
     "css-loader": "^0.28.4",
     "rimraf": "^2.6.1",
     "style-loader": "^0.18.2",
-    "webpack": "^3.3.0",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.12",
     "webpack-dev-server": "^2.5.1"
   },
   "standard": {
