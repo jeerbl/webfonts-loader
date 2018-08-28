@@ -139,6 +139,46 @@ The generated font file names. These elements can be used:
 
 This option can be also configured globally in the webpack loader options.
 
+##### `emitCodepoints`, Array (with shorthand versions of Boolean, String and Object)
+
+Optional. The generated codepoints file names. 
+
+Examples:
+
+* `emitCodepoints: true`: emits a javascript file named `[fontname].codepoints.js` in the `web` (default) format
+* `emitCodepoints: '[fontname].codepoints.fonts.js'`: emits a javascript file named `[fontname].codepoints.fonts.js` in the `commonjs` format
+* `emitCodepoints: { fileName: '[fontname].codepoints.json', type: 'json'] }`: emits a file named `[fontname].codepoints.json` in the `json` format
+* `emitCodepoints: [{ fileName: '[fontname].codepoints.json', type: 'json'] }, { fileName: '[fontname].codepoints.js', type: 'web'] }, { fileName: '[fontname].codepoints.inc.js', type: 'web'] }]`: emits three files with their respective names and types
+
+These are the existing formats:
+
+* `web`: (default): generates a file containing the array of codepoints in a format suitable for inclusion in html pages.
+
+Example (for a font named myfonticons): 
+```javascript
+if (typeof webfontIconCodepoints === 'undefined') {
+  webfontIconCodepoints = {};
+}
+webfontIconCodepoints["myfonticons"] = {"alert":61697,"arrow-down":61698,"arrow-left":61699};
+```
+
+* `commonjs`: generates a file containing the array of codepoints in the commonjs format, for use with `require`.
+```javascript
+module.exports = {"alert":61697,"arrow-down":61698,"arrow-left":61699}
+```
+
+* `json`: generates a file containing the array of codepoints in the JSON format.
+```javascript
+{"alert":61697,"arrow-down":61698,"arrow-left":61699,"arrow-right":61700,"arrow-small-down":61701}
+```
+
+These elements can be used in the filename:
+
+* `[fontname]`: the value of the `fontName` parameter
+* `[chunkhash]`: the hash of the SVG files
+
+This option can be also configured globally in the webpack loader options.
+
 ##### `files`, Array
 
 See [webfonts-generator#files](https://github.com/sunflowerdeath/webfonts-generator#files)

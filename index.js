@@ -182,6 +182,11 @@ module.exports = function (content) {
         (Buffer.from(res[format]).toString('base64'));
       }
     }
+    var emitCodepointsOptions = fontConfig.emitCodepoints || options.emitCodepoints || null;
+    if (emitCodepointsOptions) {
+      const emitCodepoints = require('./emit-codepoints');
+      emitCodepoints.emitFiles(this, emitCodepointsOptions, generatorOptions);
+    }
 
     cb(null, res.generateCss(urls));
   });
