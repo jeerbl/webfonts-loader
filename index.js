@@ -106,7 +106,7 @@ module.exports = function (content) {
   };
 
   // Add key only if it exists in config object to avoid fs errors
-  if('htmlTemplate' in fontConfig){
+  if ('htmlTemplate' in fontConfig) {
     generatorOptions.htmlTemplate = fontConfig.htmlTemplate;
   }
 
