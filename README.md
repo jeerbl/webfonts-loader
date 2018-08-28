@@ -28,7 +28,6 @@ Add this rule to your Webpack config:
   test: /\.font\.js/,
   loader: ExtractTextPlugin.extract({
     use: [
-      'style-loader',
       'css-loader',
       'webfonts-loader'
     ]
