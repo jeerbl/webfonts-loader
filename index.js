@@ -166,12 +166,13 @@ module.exports = function (content) {
       var format = formats[i];
       var filename = fontConfig.fileName || options.fileName || '[chunkhash]-[fontname].[ext]';
       var chunkHash = filename.indexOf('[chunkhash]') !== -1
-            ? hashFiles(generatorOptions.files, options.hashLength) : '';
+        ? hashFiles(generatorOptions.files, options.hashLength)
+        : '';
 
       filename = filename
-                  .replace('[chunkhash]', chunkHash)
-                  .replace('[fontname]', generatorOptions.fontName)
-                  .replace('[ext]', format);
+        .replace('[chunkhash]', chunkHash)
+        .replace('[fontname]', generatorOptions.fontName)
+        .replace('[ext]', format);
 
       if (!embed) {
         var formatFilename = loaderUtils.interpolateName(this,
