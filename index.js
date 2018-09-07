@@ -129,6 +129,14 @@ module.exports = function (content) {
     generatorOptions.cssFontsPath = path.resolve(this.context, fontConfig.cssFontsPath);
   }
 
+  if (fontConfig.htmlTemplate) {
+    generatorOptions.htmlTemplate = path.resolve(this.context, fontConfig.htmlTemplate);
+  }
+
+  if (fontConfig.htmlDest) {
+    generatorOptions.htmlDest = path.resolve(this.context, fontConfig.htmlDest);
+  }
+
   // svgicons2svgfont stuff
   var keys = [
     'fixedWidth',
