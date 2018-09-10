@@ -96,7 +96,7 @@ module.exports = function (content) {
       baseSelector: fontConfig.baseSelector || '.icon',
       classPrefix: 'classPrefix' in fontConfig ? fontConfig.classPrefix : 'icon-'
     },
-    dest: fontConfig.dest ? fontConfig.dest : '',
+    dest: fontConfig.dest || '',
     html: fontConfig.html || false,
     htmlDest: fontConfig.htmlDest || undefined,
     writeFiles: fontConfig.writeFiles || false,
@@ -135,6 +135,10 @@ module.exports = function (content) {
 
   if (fontConfig.htmlDest) {
     generatorOptions.htmlDest = path.resolve(this.context, fontConfig.htmlDest);
+  }
+
+  if (fontConfig.dest) {
+    generatorOptions.dest = path.resolve(this.context, fontConfig.dest);
   }
 
   // svgicons2svgfont stuff
