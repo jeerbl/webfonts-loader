@@ -26,13 +26,11 @@ Add this rule to your Webpack config:
 ```javascript
 {
   test: /\.font\.js/,
-  loader: ExtractTextPlugin.extract({
-    use: [
-      'style-loader',
-      'css-loader',
-      'webfonts-loader'
-    ]
-  })
+  use: [
+    MiniCssExtractPlugin.loader,
+    'css-loader',
+    'webfonts-loader'
+  ]
 }
 ```
 
@@ -45,16 +43,14 @@ You can provide `options` objects to configure the loader behaviour:
 ```javascript
 {
   test: /\.font\.js/,
-  loader: ExtractTextPlugin.extract({
-    use: [
-      'style-loader',
-      'css-loader',
-      {
-        loader: 'webfonts-loader',
-        options: { ... }
-      }
-    ]
-  })
+  use: [
+    MiniCssExtractPlugin.loader,
+    'css-loader',
+    {
+      loader: 'webfonts-loader',
+      options: { ... }
+    }
+  ]
 }
 ```
 
@@ -141,7 +137,7 @@ This option can be also configured globally in the webpack loader options.
 
 ##### `emitCodepoints`, Array (with shorthand versions of Boolean, String and Object)
 
-Optional. The generated codepoints file names. 
+Optional. The generated codepoints file names.
 
 Examples:
 
@@ -154,7 +150,7 @@ These are the existing formats:
 
 * `web`: (default): generates a file containing the array of codepoints in a format suitable for inclusion in html pages.
 
-Example (for a font named myfonticons): 
+Example (for a font named myfonticons):
 ```javascript
 if (typeof webfontIconCodepoints === 'undefined') {
   webfontIconCodepoints = {};
