@@ -1,5 +1,5 @@
 .DS_Store
 node_modules/
 test/dist/
-test/bundle.js
+test-embed/dist/
 npm-debug.log
