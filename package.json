@@ -18,7 +18,7 @@
     "loader"
   ],
   "author": "Jérôme Brunel",
-  "license": "Unlicense",
+  "license": "MIT",
   "dependencies": {
     "glob": "^7.1.1",
     "hash-files": "^1.1.1",
@@ -26,11 +26,7 @@
     "webfonts-generator": "^0.4.0"
   },
   "devDependencies": {
-    "css-loader": "^1.0.1",
-    "file-loader": "^2.0.0",
-    "semistandard": "^13.0.1",
-    "style-loader": "^0.23.1",
-    "url-loader": "^1.1.2"
+    "semistandard": "^13.0.1"
   },
   "semistandard": {
     "ignore": [
