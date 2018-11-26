@@ -185,7 +185,7 @@ module.exports = function (content) {
     var emitCodepointsOptions = fontConfig.emitCodepoints || options.emitCodepoints || null;
     if (emitCodepointsOptions) {
       const emitCodepoints = require('./emit-codepoints');
-      emitCodepoints.emitFiles(this, emitCodepointsOptions, generatorOptions);
+      emitCodepoints.emitFiles(this, emitCodepointsOptions, generatorOptions, options);
     }
 
     cb(null, res.generateCss(urls));

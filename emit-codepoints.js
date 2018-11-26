@@ -1,18 +1,21 @@
 var loaderUtils = require('loader-utils');
+
+var hashFiles = require('./utils').hashFiles;
+
 module.exports = {
   createArrayCodepointFiles (codepointFiles, elem) {
-    const default_elem = { fileName: '[fontname].codepoints.js', type: 'web' };
+    const defaultElem = { fileName: '[fontname].codepoints.js', type: 'web' };
     if (typeof (elem) === 'boolean') {
-      codepointFiles.push(Object.assign({}, default_elem));
-    }		else if (typeof (elem) === 'string') {
-      codepointFiles.push(Object.assign({}, default_elem, { fileName: elem }));
+      codepointFiles.push(Object.assign({}, defaultElem));
+    } else if (typeof (elem) === 'string') {
+      codepointFiles.push(Object.assign({}, defaultElem, { fileName: elem }));
     } else if (Array.isArray(elem)) {
       elem.forEach(e => this.createArrayCodepointFiles(codepointFiles, e));
     } else if (typeof (elem) === 'object') {
-      codepointFiles.push(Object.assign({}, default_elem, elem));
+      codepointFiles.push(Object.assign({}, defaultElem, elem));
     }
   },
-  emitFiles (loaderContext, emitCodepointsOptions, generatorOptions) {
+  emitFiles (loaderContext, emitCodepointsOptions, generatorOptions, options) {
     var codepointFiles = [];
     this.createArrayCodepointFiles(codepointFiles, emitCodepointsOptions);
     codepointFiles.forEach(emitOption => {
