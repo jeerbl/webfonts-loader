@@ -1,5 +1,7 @@
 const path = require('path');
 
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 module.exports = {
   entry: [
     './entry.js'
@@ -14,13 +16,18 @@ module.exports = {
       {
         test: /\.font\.js/,
         use: [
-          'style-loader',
+          MiniCssExtractPlugin.loader,
           'css-loader',
           require.resolve('../') // Replace this line with require('webfonts-loader')
         ]
       }
     ]
   },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'app.bundle.[contenthash].css'
+    })
+  ],
   devServer: {
     compress: true,
     historyApiFallback: true,
