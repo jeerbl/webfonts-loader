@@ -38,12 +38,15 @@ module.exports = {
           break;
         }
       }
+
       var codepointsFilename = emitOption.fileName;
       var chunkHash = codepointsFilename.indexOf('[chunkhash]') !== -1
-            ? hashFiles(generatorOptions.files, options.hashLength) : '';
+        ? hashFiles(generatorOptions.files, options.hashLength) : '';
+
       codepointsFilename = codepointsFilename
-                  .replace('[chunkhash]', chunkHash)
-                  .replace('[fontname]', generatorOptions.fontName);
+        .replace('[chunkhash]', chunkHash)
+        .replace('[fontname]', generatorOptions.fontName);
+
       codepointsFilename = loaderUtils.interpolateName(loaderContext,
         codepointsFilename,
         {
