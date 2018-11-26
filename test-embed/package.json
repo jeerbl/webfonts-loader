@@ -1,0 +1,22 @@
+{
+  "name": "webfonts-loader-test",
+  "private": true,
+  "main": "entry.js",
+  "scripts": {
+    "test": "rimraf ./dist && ava -v ./ava.js && webpack --mode production"
+  },
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "css-loader": "^1.0.1",
+    "rimraf": "^2.6.1",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.26.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  },
+  "standard": {
+    "ignore": [
+      "./dist"
+    ]
+  }
+}
