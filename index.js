@@ -98,11 +98,19 @@ module.exports = function (content) {
       baseSelector: fontConfig.baseSelector || '.icon',
       classPrefix: 'classPrefix' in fontConfig ? fontConfig.classPrefix : 'icon-'
     },
-    dest: '',
-    writeFiles: false,
+    dest: fontConfig.dest || '',
+    html: fontConfig.html || false,
+    htmlDest: fontConfig.htmlDest || undefined,
+    writeFiles: fontConfig.writeFiles || false,
+    cssFontsUrl: fontConfig.cssFontsUrl || '',
     embed: fontConfig.embed || false,
     formatOptions: fontConfig.formatOptions || {}
   };
+
+  // Add key only if it exists in config object to avoid fs errors
+  if ('htmlTemplate' in fontConfig) {
+    generatorOptions.htmlTemplate = fontConfig.htmlTemplate;
+  }
 
   // This originally was in the object notation itself.
   // Unfortunately that actually broke my editor's syntax-highlighting...
@@ -121,6 +129,18 @@ module.exports = function (content) {
 
   if (fontConfig.cssFontsPath) {
     generatorOptions.cssFontsPath = path.resolve(this.context, fontConfig.cssFontsPath);
+  }
+
+  if (fontConfig.htmlTemplate) {
+    generatorOptions.htmlTemplate = path.resolve(this.context, fontConfig.htmlTemplate);
+  }
+
+  if (fontConfig.htmlDest) {
+    generatorOptions.htmlDest = path.resolve(this.context, fontConfig.htmlDest);
+  }
+
+  if (fontConfig.dest) {
+    generatorOptions.dest = path.resolve(this.context, fontConfig.dest);
   }
 
   // svgicons2svgfont stuff
