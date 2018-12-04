@@ -1,11 +1,11 @@
 {
   "name": "webfonts-loader",
-  "version": "4.1.1",
+  "version": "4.3.1",
   "description": "A WebPack loader to automaticaly generate font files and CSS to make your own icon font",
   "repository": "jeerbl/webfonts-loader",
   "main": "index.js",
   "scripts": {
-    "test": "semistandard && cd test && npm install && npm test"
+    "test": "semistandard && ./runTest.sh && ./runTestEmbed.sh"
   },
   "keywords": [
     "font",
@@ -18,7 +18,7 @@
     "loader"
   ],
   "author": "Jérôme Brunel",
-  "license": "Unlicense",
+  "license": "MIT",
   "dependencies": {
     "glob": "^7.1.1",
     "hash-files": "^1.1.1",
@@ -26,11 +26,7 @@
     "webfonts-generator": "^0.4.0"
   },
   "devDependencies": {
-    "css-loader": "^0.28.0",
-    "file-loader": "^0.11.1",
-    "semistandard": "*",
-    "style-loader": "^0.18.1",
-    "url-loader": "^0.5.8"
+    "semistandard": "^13.0.1"
   },
   "semistandard": {
     "ignore": [
