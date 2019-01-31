@@ -117,6 +117,11 @@ See [webfonts-generator#csstemplate](https://github.com/sunflowerdeath/webfonts-
 If true the font is encoded in base64 and embedded inside the `@font-face` declaration, otherwise font files are written to disk.
 Default: `false`
 
+##### `scssFile`, Boolean
+
+If true, the build process will export a .scss file in the same path as the .css file.
+Default: `false`
+
 ##### `hashLength`, Number
 
 Optional. The length of hash in `fileName`.
