@@ -98,6 +98,7 @@ module.exports = function (content) {
       baseSelector: fontConfig.baseSelector || '.icon',
       classPrefix: 'classPrefix' in fontConfig ? fontConfig.classPrefix : 'icon-'
     },
+    scssFile: fontConfig.scssFile || false,
     dest: fontConfig.dest || '',
     html: fontConfig.html || false,
     htmlDest: fontConfig.htmlDest || undefined,
@@ -141,6 +142,11 @@ module.exports = function (content) {
 
   if (fontConfig.dest) {
     generatorOptions.dest = path.resolve(this.context, fontConfig.dest);
+  }
+
+  // Spit out SCSS file to same path as CSS file to easily use mixins (scssFile must be true)
+  if (fontConfig.scssFile === true) {
+    generatorOptions.cssDest = path.resolve(this.context, fontConfig.dest, fontConfig.fontName + '.scss')
   }
 
   // svgicons2svgfont stuff
