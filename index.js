@@ -146,7 +146,7 @@ module.exports = function (content) {
 
   // Spit out SCSS file to same path as CSS file to easily use mixins (scssFile must be true)
   if (fontConfig.scssFile === true) {
-    generatorOptions.cssDest = path.resolve(this.context, fontConfig.dest, fontConfig.fontName + '.scss')
+    generatorOptions.cssDest = path.resolve(this.context, fontConfig.dest, fontConfig.fontName + '.scss');
   }
 
   // svgicons2svgfont stuff
