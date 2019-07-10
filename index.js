@@ -128,8 +128,8 @@ module.exports = function (content) {
     generatorOptions.cssTemplate = path.resolve(this.context, fontConfig.cssTemplate);
   }
 
-  if (fontConfig.cssFontsPath) {
-    generatorOptions.cssFontsPath = path.resolve(this.context, fontConfig.cssFontsPath);
+  if (fontConfig.cssFontsUrl) {
+    generatorOptions.cssFontsUrl = path.resolve(this.context, fontConfig.cssFontsUrl);
   }
 
   if (fontConfig.htmlTemplate) {
