@@ -166,7 +166,14 @@ module.exports = function (content) {
 
   var cb = this.async();
 
-  var publicPath = options.publicPath || (webpackOptions.output && webpackOptions.output.publicPath) || '/';
+  const publicPath = typeof options.publicPath === 'string'
+  ? options.publicPath === '' || options.publicPath.endsWith('/')
+  ? options.publicPath
+  : `${options.publicPath}/`
+  : typeof options.publicPath === 'function'
+  ? options.publicPath(this.resourcePath, this.rootContext)
+  : this._compilation.outputOptions.publicPath;
+
   var embed = !!generatorOptions.embed;
 
   if (generatorOptions.cssTemplate) {
