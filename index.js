@@ -194,7 +194,7 @@ module.exports = function (content) {
       var chunkHash = filename.indexOf('[chunkhash]') !== -1
         ? hashFiles(generatorOptions.files, options.hashLength) : '';
 
-      filename = fontConfig.dest.concat(filename);
+      filename = generatorOptions.dest.concat(filename);
       filename = filename
         .replace('[chunkhash]', chunkHash)
         .replace('[fontname]', generatorOptions.fontName)
