@@ -180,8 +180,8 @@ module.exports = function (content) {
     this.addDependency(generatorOptions.cssTemplate);
   }
 
-  if (generatorOptions.cssFontsPath) {
-    this.addDependency(generatorOptions.cssFontsPath);
+  if (generatorOptions.cssFontsUrl) {
+    this.addDependency(generatorOptions.cssFontsUrl);
   }
 
   webfontsGenerator(generatorOptions, (err, res) => {
