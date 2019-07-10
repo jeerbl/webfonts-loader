@@ -1,5 +1,5 @@
 var loaderUtils = require('loader-utils');
-var webfontsGenerator = require('webfonts-generator');
+var webfontsGenerator = require('@vusion/webfonts-generator');
 var path = require('path');
 var glob = require('glob');
 var url = require('url');
