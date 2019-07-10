@@ -66,7 +66,6 @@ function wpGetOptions (context) {
 module.exports = function (content) {
   this.cacheable();
 
-  var webpackOptions = this.options || {}; // only makes sense in Webpack 1.x, or when LoaderOptionsPlugin is used
   var options = wpGetOptions(this) || {};
   var rawFontConfig;
   try {
@@ -167,12 +166,12 @@ module.exports = function (content) {
   var cb = this.async();
 
   const publicPath = typeof options.publicPath === 'string'
-  ? options.publicPath === '' || options.publicPath.endsWith('/')
-  ? options.publicPath
-  : `${options.publicPath}/`
-  : typeof options.publicPath === 'function'
-  ? options.publicPath(this.resourcePath, this.rootContext)
-  : this._compilation.outputOptions.publicPath;
+    ? options.publicPath === '' || options.publicPath.endsWith('/')
+      ? options.publicPath
+      : `${options.publicPath}/`
+    : typeof options.publicPath === 'function'
+      ? options.publicPath(this.resourcePath, this.rootContext)
+      : this._compilation.outputOptions.publicPath;
 
   var embed = !!generatorOptions.embed;
 
