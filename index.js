@@ -140,8 +140,8 @@ module.exports = function (content) {
   }
 
   if (fontConfig.dest) {
-    generatorOptions.dest = "";
-    if (fontConfig.dest.endsWith("/")) {
+    generatorOptions.dest = '';
+    if (fontConfig.dest.endsWith('/')) {
       generatorOptions.dest = fontConfig.dest;
     } else {
       generatorOptions.dest = `${fontConfig.dest}/`;
