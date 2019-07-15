@@ -140,7 +140,12 @@ module.exports = function (content) {
   }
 
   if (fontConfig.dest) {
-    generatorOptions.dest = path.resolve(this.context, fontConfig.dest);
+    generatorOptions.dest = "";
+    if (fontConfig.dest.endsWith("/")) {
+      generatorOptions.dest = fontConfig.dest;
+    } else {
+      generatorOptions.dest = `${fontConfig.dest}/`;
+    }
   }
 
   // Spit out SCSS file to same path as CSS file to easily use mixins (scssFile must be true)
