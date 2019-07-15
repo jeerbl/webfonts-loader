@@ -165,13 +165,20 @@ module.exports = function (content) {
 
   var cb = this.async();
 
-  const publicPath = typeof options.publicPath === 'string'
-    ? options.publicPath === '' || options.publicPath.endsWith('/')
-      ? options.publicPath
-      : `${options.publicPath}/`
-    : typeof options.publicPath === 'function'
-      ? options.publicPath(this.resourcePath, this.rootContext)
-      : this._compilation.outputOptions.publicPath;
+  const publicPath = "";
+  if (typeof options.publicPath === 'string') {
+    if (options.publicPath === '' || options.publicPath.endsWith('/')) {
+      publicPath = options.publicPath;
+    } else {
+      publicPath = `${options.publicPath}/`;
+    }
+  } else {
+    if (typeof options.publicPath === 'function') {
+      publicPath = options.publicPath(this.resourcePath, this.rootContext);
+    } else {
+      publicPath = this._compilation.outputOptions.publicPath;
+    }
+  }
 
   var embed = !!generatorOptions.embed;
 
