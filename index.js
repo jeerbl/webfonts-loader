@@ -165,7 +165,7 @@ module.exports = function (content) {
 
   var cb = this.async();
 
-  const publicPath = "";
+  let publicPath = '';
   if (typeof options.publicPath === 'string') {
     if (options.publicPath === '' || options.publicPath.endsWith('/')) {
       publicPath = options.publicPath;
