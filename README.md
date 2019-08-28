@@ -7,7 +7,7 @@
 
 A Webpack loader that generates fonts from your SVG icons and allows you to use your icons in your HTML.
 
-`webfonts-loader` uses the [`webfonts-generator`](https://github.com/sunflowerdeath/webfonts-generator) plugin to create fonts in any format. It also generates CSS files so that you can use your icons directly in your HTML, using CSS classes.
+`webfonts-loader` uses the [`webfonts-generator`](https://github.com/vusion/webfonts-generator) plugin to create fonts in any format. It also generates CSS files so that you can use your icons directly in your HTML, using CSS classes.
 
 ## Installation
 
@@ -101,16 +101,16 @@ The loader will then generate:
 ##### `baseSelector`, String
 
 The base CSS selector, under which each icon class is to be created.
-See [webfonts-generator#templateoptions](https://github.com/sunflowerdeath/webfonts-generator#templateoptions)
+See [webfonts-generator#templateoptions](https://github.com/vusion/webfonts-generator#templateoptions)
 
 ##### `classPrefix`, String
 
 The prefix to be used with each icon class.
-See [webfonts-generator#templateoptions](https://github.com/sunflowerdeath/webfonts-generator#templateoptions)
+See [webfonts-generator#templateoptions](https://github.com/vusion/webfonts-generator#templateoptions)
 
 ##### `cssTemplate`, String
 
-See [webfonts-generator#csstemplate](https://github.com/sunflowerdeath/webfonts-generator#csstemplate)
+See [webfonts-generator#csstemplate](https://github.com/vusion/webfonts-generator#csstemplate)
 
 ##### `embed`, Boolean
 
@@ -182,43 +182,43 @@ This option can be also configured globally in the webpack loader options.
 
 ##### `files`, Array
 
-See [webfonts-generator#files](https://github.com/sunflowerdeath/webfonts-generator#files)
+See [webfonts-generator#files](https://github.com/vusion/webfonts-generator#files)
 
 ##### `fontName`, String
 
-See [webfonts-generator#fontname](https://github.com/sunflowerdeath/webfonts-generator#fontname)
+See [webfonts-generator#fontname](https://github.com/vusion/webfonts-generator#fontname)
 
 ##### `formatOptions`, Object
 
-See [webfonts-generator#formatoptions](https://github.com/sunflowerdeath/webfonts-generator#formatoptions)
+See [webfonts-generator#formatoptions](https://github.com/vusion/webfonts-generator#formatoptions)
 
 ##### `rename`, Function
 
-See [webfonts-generator#rename](https://github.com/sunflowerdeath/webfonts-generator#rename)
+See [webfonts-generator#rename](https://github.com/vusion/webfonts-generator#rename)
 
 ##### `types`, Array<String>
 
-See [webfonts-generator#types](https://github.com/sunflowerdeath/webfonts-generator#types)
+See [webfonts-generator#types](https://github.com/vusion/webfonts-generator#types)
 
 ##### `dest`, String
 
-See [webfonts-generator#dest](https://github.com/sunflowerdeath/webfonts-generator#dest)
+See [webfonts-generator#dest](https://github.com/vusion/webfonts-generator#dest)
 
 ##### `html`, Boolean
 
-See [webfonts-generator#html](https://github.com/sunflowerdeath/webfonts-generator#html)
+See [webfonts-generator#html](https://github.com/vusion/webfonts-generator#html)
 
 ##### `htmlDest`, String
 
-See [webfonts-generator#htmldest](https://github.com/sunflowerdeath/webfonts-generator#htmldest)
+See [webfonts-generator#htmldest](https://github.com/vusion/webfonts-generator#htmldest)
 
 ##### `writeFiles`, Boolean (default false)
 
-See [webfonts-generator#writefiles](https://github.com/sunflowerdeath/webfonts-generator#writefiles)
+See [webfonts-generator#writefiles](https://github.com/vusion/webfonts-generator#writefiles)
 
 ##### `cssFontsUrl`, String (before cssFontsPath)
 
-See [webfonts-generator#cssfontspath](https://github.com/sunflowerdeath/webfonts-generator#cssfontspath)
+See [webfonts-generator#cssfontspath](https://github.com/vusion/webfonts-generator#cssfontspath)
 
 ##### `htmlTemplate`, String
 #### Example
@@ -228,4 +228,4 @@ htmlTemplate: path.resolve(__dirname, 'src/html.hbs'),
 ...
 ```
 
-See [webfonts-generator#htmltemplate](https://github.com/sunflowerdeath/webfonts-generator#htmltemplate)
+See [webfonts-generator#htmltemplate](https://github.com/vusion/webfonts-generator#htmltemplate)

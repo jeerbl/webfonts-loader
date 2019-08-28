@@ -1,5 +1,5 @@
 var loaderUtils = require('loader-utils');
-var webfontsGenerator = require('webfonts-generator');
+var webfontsGenerator = require('@vusion/webfonts-generator');
 var path = require('path');
 var glob = require('glob');
 var url = require('url');
@@ -66,7 +66,6 @@ function wpGetOptions (context) {
 module.exports = function (content) {
   this.cacheable();
 
-  var webpackOptions = this.options || {}; // only makes sense in Webpack 1.x, or when LoaderOptionsPlugin is used
   var options = wpGetOptions(this) || {};
   var rawFontConfig;
   try {
@@ -128,8 +127,8 @@ module.exports = function (content) {
     generatorOptions.cssTemplate = path.resolve(this.context, fontConfig.cssTemplate);
   }
 
-  if (fontConfig.cssFontsPath) {
-    generatorOptions.cssFontsPath = path.resolve(this.context, fontConfig.cssFontsPath);
+  if (fontConfig.cssFontsUrl) {
+    generatorOptions.cssFontsUrl = path.resolve(this.context, fontConfig.cssFontsUrl);
   }
 
   if (fontConfig.htmlTemplate) {
@@ -141,7 +140,12 @@ module.exports = function (content) {
   }
 
   if (fontConfig.dest) {
-    generatorOptions.dest = path.resolve(this.context, fontConfig.dest);
+    generatorOptions.dest = '';
+    if (fontConfig.dest.endsWith('/')) {
+      generatorOptions.dest = fontConfig.dest;
+    } else {
+      generatorOptions.dest = `${fontConfig.dest}/`;
+    }
   }
 
   // Spit out SCSS file to same path as CSS file to easily use mixins (scssFile must be true)
@@ -166,15 +170,29 @@ module.exports = function (content) {
 
   var cb = this.async();
 
-  var publicPath = options.publicPath || (webpackOptions.output && webpackOptions.output.publicPath) || '/';
+  let publicPath = '';
+  if (typeof options.publicPath === 'string') {
+    if (options.publicPath === '' || options.publicPath.endsWith('/')) {
+      publicPath = options.publicPath;
+    } else {
+      publicPath = `${options.publicPath}/`;
+    }
+  } else {
+    if (typeof options.publicPath === 'function') {
+      publicPath = options.publicPath(this.resourcePath, this.rootContext);
+    } else {
+      publicPath = this._compilation.outputOptions.publicPath;
+    }
+  }
+
   var embed = !!generatorOptions.embed;
 
   if (generatorOptions.cssTemplate) {
     this.addDependency(generatorOptions.cssTemplate);
   }
 
-  if (generatorOptions.cssFontsPath) {
-    this.addDependency(generatorOptions.cssFontsPath);
+  if (generatorOptions.cssFontsUrl) {
+    this.addDependency(generatorOptions.cssFontsUrl);
   }
 
   webfontsGenerator(generatorOptions, (err, res) => {
@@ -188,6 +206,7 @@ module.exports = function (content) {
       var chunkHash = filename.indexOf('[chunkhash]') !== -1
         ? hashFiles(generatorOptions.files, options.hashLength) : '';
 
+      filename = generatorOptions.dest.concat(filename);
       filename = filename
         .replace('[chunkhash]', chunkHash)
         .replace('[fontname]', generatorOptions.fontName)
