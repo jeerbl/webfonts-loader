@@ -169,7 +169,7 @@ module.exports = function (content) {
 
   var cb = this.async();
 
-  let publicPath;
+  var publicPath;
   if (typeof options.publicPath === 'string') {
     if (options.publicPath === '' || options.publicPath.endsWith('/')) {
       publicPath = options.publicPath;
@@ -230,7 +230,7 @@ module.exports = function (content) {
     }
     var emitCodepointsOptions = fontConfig.emitCodepoints || options.emitCodepoints || null;
     if (emitCodepointsOptions) {
-      const emitCodepoints = require('./emit-codepoints');
+      var emitCodepoints = require('./emit-codepoints');
       emitCodepoints.emitFiles(this, emitCodepointsOptions, generatorOptions, options);
     }
 
