@@ -140,7 +140,6 @@ module.exports = function (content) {
   }
 
   if (fontConfig.dest) {
-    generatorOptions.dest = '';
     if (fontConfig.dest.endsWith('/')) {
       generatorOptions.dest = fontConfig.dest;
     } else {
@@ -170,7 +169,7 @@ module.exports = function (content) {
 
   var cb = this.async();
 
-  let publicPath = '';
+  let publicPath;
   if (typeof options.publicPath === 'string') {
     if (options.publicPath === '' || options.publicPath.endsWith('/')) {
       publicPath = options.publicPath;
