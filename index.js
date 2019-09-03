@@ -181,7 +181,7 @@ module.exports = function (content) {
     if (typeof options.publicPath === 'function') {
       publicPath = options.publicPath(this.resourcePath, this.rootContext);
     } else {
-      publicPath = this._compilation.outputOptions.publicPath;
+      publicPath = this._compilation.outputOptions.publicPath || '/';
     }
   }
 
