@@ -20,7 +20,7 @@
   "author": "Jérôme Brunel",
   "license": "MIT",
   "dependencies": {
-    "@vusion/webfonts-generator": "^0.5.5",
+    "@vusion/webfonts-generator": "^0.6.0",
     "glob": "^7.1.4",
     "hash-files": "^1.1.1",
     "loader-utils": "^1.2.3"
