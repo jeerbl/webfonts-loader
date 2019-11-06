@@ -140,7 +140,6 @@ module.exports = function (content) {
   }
 
   if (fontConfig.dest) {
-    generatorOptions.dest = '';
     if (fontConfig.dest.endsWith('/')) {
       generatorOptions.dest = fontConfig.dest;
     } else {
@@ -170,7 +169,7 @@ module.exports = function (content) {
 
   var cb = this.async();
 
-  let publicPath = '';
+  var publicPath;
   if (typeof options.publicPath === 'string') {
     if (options.publicPath === '' || options.publicPath.endsWith('/')) {
       publicPath = options.publicPath;
@@ -181,7 +180,7 @@ module.exports = function (content) {
     if (typeof options.publicPath === 'function') {
       publicPath = options.publicPath(this.resourcePath, this.rootContext);
     } else {
-      publicPath = this._compilation.outputOptions.publicPath;
+      publicPath = this._compilation.outputOptions.publicPath || '/';
     }
   }
 
@@ -231,7 +230,7 @@ module.exports = function (content) {
     }
     var emitCodepointsOptions = fontConfig.emitCodepoints || options.emitCodepoints || null;
     if (emitCodepointsOptions) {
-      const emitCodepoints = require('./emit-codepoints');
+      var emitCodepoints = require('./emit-codepoints');
       emitCodepoints.emitFiles(this, emitCodepointsOptions, generatorOptions, options);
     }
 
