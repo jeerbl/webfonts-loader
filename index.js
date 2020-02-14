@@ -99,6 +99,7 @@ module.exports = function (content) {
     },
     scssFile: fontConfig.scssFile || false,
     dest: fontConfig.dest || '',
+    cssDest: fontConfig.cssDest || undefined,
     html: fontConfig.html || false,
     htmlDest: fontConfig.htmlDest || undefined,
     writeFiles: fontConfig.writeFiles || false,
