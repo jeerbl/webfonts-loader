@@ -102,6 +102,7 @@ module.exports = function (content) {
     html: fontConfig.html || false,
     htmlDest: fontConfig.htmlDest || undefined,
     writeFiles: fontConfig.writeFiles || false,
+    cssDest: fontConfig.cssDest ? path.resolve(this.context, fontConfig.cssDest, fontConfig.fontName.toLowerCase() + '.css') : undefined,
     cssFontsUrl: fontConfig.cssFontsUrl || '',
     embed: fontConfig.embed || false,
     formatOptions: fontConfig.formatOptions || {}
@@ -148,8 +149,8 @@ module.exports = function (content) {
   }
 
   // Spit out SCSS file to same path as CSS file to easily use mixins (scssFile must be true)
-  if (fontConfig.scssFile === true) {
-    generatorOptions.cssDest = path.resolve(this.context, fontConfig.dest, fontConfig.fontName + '.scss');
+  if (fontConfig.cssDest && fontConfig.scssFile) {
+    generatorOptions.cssDest = path.resolve(this.context, fontConfig.cssDest, fontConfig.fontName.toLowerCase() + '.scss');
   }
 
   // svgicons2svgfont stuff
