@@ -101,16 +101,20 @@ The loader will then generate:
 ##### `baseSelector`, String
 
 The base CSS selector, under which each icon class is to be created.
-See [webfonts-generator#templateoptions](https://github.com/vusion/webfonts-generator#templateoptions)
+See [webfonts-generator#templateOptions](https://github.com/vusion/webfonts-generator#templateoptions)
 
 ##### `classPrefix`, String
 
 The prefix to be used with each icon class.
-See [webfonts-generator#templateoptions](https://github.com/vusion/webfonts-generator#templateoptions)
+See [webfonts-generator#templateOptions](https://github.com/vusion/webfonts-generator#templateoptions)
 
 ##### `cssTemplate`, String
 
-See [webfonts-generator#csstemplate](https://github.com/vusion/webfonts-generator#csstemplate)
+See [webfonts-generator#cssTemplate](https://github.com/vusion/webfonts-generator#csstemplate)
+
+##### `cssDest`, String
+
+See [webfonts-generator#cssDest](https://github.com/vusion/webfonts-generator#csstemplate)
 
 ##### `embed`, Boolean
 
