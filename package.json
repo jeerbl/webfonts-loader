@@ -5,7 +5,8 @@
   "repository": "jeerbl/webfonts-loader",
   "main": "index.js",
   "scripts": {
-    "test": "semistandard && ./runTest.sh && ./runTestEmbed.sh"
+    "test": "semistandard && ./runTest.sh && ./runTestEmbed.sh",
+    "postinstall": "github-sponsors"
   },
   "keywords": [
     "font",
@@ -26,6 +27,7 @@
     "loader-utils": "^1.2.3"
   },
   "devDependencies": {
+    "github-sponsors": "^1.0.1",
     "semistandard": "^13.0.1"
   },
   "semistandard": {
