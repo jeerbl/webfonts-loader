@@ -1,6 +1,6 @@
 {
   "name": "webfonts-loader",
-  "version": "5.1.1",
+  "version": "5.2.0",
   "description": "A WebPack loader to automaticaly generate font files and CSS to make your own icon font",
   "repository": "jeerbl/webfonts-loader",
   "main": "index.js",
