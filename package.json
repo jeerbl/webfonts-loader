@@ -26,7 +26,6 @@
     "@vusion/webfonts-generator": "^0.6.1",
     "github-sponsors": "^1.0.1",
     "glob": "^7.1.6",
-    "hash-files": "^1.1.1",
     "loader-utils": "^1.4.0"
   },
   "devDependencies": {
