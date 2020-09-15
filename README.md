@@ -220,6 +220,10 @@ See [webfonts-generator#htmldest](https://github.com/vusion/webfonts-generator#h
 
 See [webfonts-generator#writefiles](https://github.com/vusion/webfonts-generator#writefiles)
 
+##### `ligature`, Boolean
+
+See [webfonts-generator#ligature](https://github.com/vusion/webfonts-generator#ligature)
+
 ##### `cssFontsUrl`, String (before cssFontsPath)
 
 See [webfonts-generator#cssfontspath](https://github.com/vusion/webfonts-generator#cssfontspath)

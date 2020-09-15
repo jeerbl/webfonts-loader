@@ -101,6 +101,7 @@ module.exports = function (content) {
     dest: fontConfig.dest || '',
     html: fontConfig.html || false,
     htmlDest: fontConfig.htmlDest || undefined,
+    ligature: fontConfig.ligature !== undefined ? fontConfig.ligature : undefined,
     writeFiles: fontConfig.writeFiles || false,
     cssDest: fontConfig.cssDest ? path.resolve(this.context, fontConfig.cssDest, fontConfig.fontName.toLowerCase() + '.css') : undefined,
     cssFontsUrl: fontConfig.cssFontsUrl || '',
