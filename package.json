@@ -27,11 +27,11 @@
     "github-sponsors": "^1.0.1",
     "glob": "^7.1.6",
     "hash-files": "^1.1.1",
-    "loader-utils": "^1.4.0",
-    "snyk": "^1.398.0"
+    "loader-utils": "^1.4.0"
   },
   "devDependencies": {
-    "semistandard": "^13.0.1"
+    "semistandard": "^13.0.1",
+    "snyk": "^1.398.0"
   },
   "semistandard": {
     "ignore": [
