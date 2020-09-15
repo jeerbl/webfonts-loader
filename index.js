@@ -101,18 +101,15 @@ module.exports = function (content) {
     dest: fontConfig.dest || '',
     html: fontConfig.html || false,
     htmlDest: fontConfig.htmlDest || undefined,
-    ligature: fontConfig.ligature !== undefined ? fontConfig.ligature : undefined,
-    writeFiles: fontConfig.writeFiles !== undefined ? fontConfig.writeFiles : undefined,
     cssDest: fontConfig.cssDest ? path.resolve(this.context, fontConfig.cssDest, fontConfig.fontName.toLowerCase() + '.css') : undefined,
     cssFontsUrl: fontConfig.cssFontsUrl || '',
     embed: fontConfig.embed || false,
     formatOptions: fontConfig.formatOptions || {}
   };
 
-  // Add key only if it exists in config object to avoid fs errors
-  if ('htmlTemplate' in fontConfig) {
-    generatorOptions.htmlTemplate = fontConfig.htmlTemplate;
-  }
+  if ('ligature' in fontConfig) generatorOptions.ligature = fontConfig.ligature;
+  if ('writeFiles' in fontConfig) generatorOptions.writeFiles = fontConfig.writeFiles;
+  if ('htmlTemplate' in fontConfig) generatorOptions.htmlTemplate = fontConfig.htmlTemplate;
 
   // This originally was in the object notation itself.
   // Unfortunately that actually broke my editor's syntax-highlighting...
