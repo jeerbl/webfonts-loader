@@ -102,7 +102,7 @@ module.exports = function (content) {
     html: fontConfig.html || false,
     htmlDest: fontConfig.htmlDest || undefined,
     ligature: fontConfig.ligature !== undefined ? fontConfig.ligature : undefined,
-    writeFiles: fontConfig.writeFiles || false,
+    writeFiles: fontConfig.writeFiles !== undefined ? fontConfig.writeFiles : undefined,
     cssDest: fontConfig.cssDest ? path.resolve(this.context, fontConfig.cssDest, fontConfig.fontName.toLowerCase() + '.css') : undefined,
     cssFontsUrl: fontConfig.cssFontsUrl || '',
     embed: fontConfig.embed || false,
