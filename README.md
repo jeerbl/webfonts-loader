@@ -216,10 +216,6 @@ See [webfonts-generator#html](https://github.com/vusion/webfonts-generator#html)
 
 See [webfonts-generator#htmldest](https://github.com/vusion/webfonts-generator#htmldest)
 
-##### `writeFiles`, Boolean
-
-See [webfonts-generator#writefiles](https://github.com/vusion/webfonts-generator#writefiles)
-
 ##### `ligature`, Boolean
 
 See [webfonts-generator#ligature](https://github.com/vusion/webfonts-generator#ligature)
