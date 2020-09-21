@@ -4,9 +4,6 @@
   "description": "A WebPack loader to automaticaly generate font files and CSS to make your own icon font",
   "repository": "jeerbl/webfonts-loader",
   "main": "index.js",
-  "files": [
-    "*.js"
-  ],
   "scripts": {
     "test": "semistandard && ./runTest.sh && ./runTestEmbed.sh",
     "postinstall": "github-sponsors",
@@ -33,7 +30,7 @@
   },
   "devDependencies": {
     "semistandard": "^13.0.1",
-    "snyk": "^1.398.1"
+    "snyk": "^1.399.0"
   },
   "semistandard": {
     "ignore": [
