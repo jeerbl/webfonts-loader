@@ -5,6 +5,8 @@ var glob = require('glob');
 var url = require('url');
 var hashFiles = require('./utils').hashFiles;
 
+var NativeModule = require('module');
+
 var mimeTypes = {
   'eot': 'application/vnd.ms-fontobject',
   'svg': 'image/svg+xml',
@@ -71,7 +73,13 @@ module.exports = function (content) {
   try {
     rawFontConfig = JSON.parse(content);
   } catch (ex) {
-    rawFontConfig = this.exec(content, this.resourcePath);
+    var module = new NativeModule(this.resourcePath);
+
+    module.paths = NativeModule._nodeModulePaths(this.context);
+    module.filename = this.resourcePath;
+    module._compile(content, this.resourcePath);
+
+    rawFontConfig = module.exports;
   }
   var fontConfig = Object.assign({}, options, rawFontConfig);
 
