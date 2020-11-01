@@ -104,11 +104,11 @@ module.exports = function (content) {
     cssDest: fontConfig.cssDest ? path.resolve(this.context, fontConfig.cssDest, fontConfig.fontName.toLowerCase() + '.css') : undefined,
     cssFontsUrl: fontConfig.cssFontsUrl || '',
     embed: fontConfig.embed || false,
-    formatOptions: fontConfig.formatOptions || {},
-    writeFiles: false
+    formatOptions: fontConfig.formatOptions || {}
   };
 
   if ('ligature' in fontConfig) generatorOptions.ligature = fontConfig.ligature;
+  if ('writeFiles' in fontConfig) generatorOptions.writeFiles = fontConfig.writeFiles;
   if ('htmlTemplate' in fontConfig) generatorOptions.htmlTemplate = fontConfig.htmlTemplate;
 
   // This originally was in the object notation itself.
