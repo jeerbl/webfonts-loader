@@ -20,7 +20,7 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              url: () => false
+              url: false
             }
           },
           require.resolve('../') // Replace this line with require('webfonts-loader')

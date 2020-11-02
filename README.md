@@ -31,7 +31,7 @@ Add this rule to your Webpack config:
     {
       loader: 'css-loader',
       options: {
-        url: () => false
+        url: false
       }
     },
     'webfonts-loader'
@@ -53,7 +53,7 @@ You can provide `options` objects to configure the loader behaviour:
     {
       loader: 'css-loader',
       options: {
-        url: () => false
+        url: false
       }
     },
     {
