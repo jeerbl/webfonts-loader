@@ -28,7 +28,12 @@ Add this rule to your Webpack config:
   test: /\.font\.js/,
   use: [
     MiniCssExtractPlugin.loader,
-    'css-loader',
+    {
+      loader: 'css-loader',
+      options: {
+        url: false
+      }
+    },
     'webfonts-loader'
   ]
 }
@@ -45,7 +50,12 @@ You can provide `options` objects to configure the loader behaviour:
   test: /\.font\.js/,
   use: [
     MiniCssExtractPlugin.loader,
-    'css-loader',
+    {
+      loader: 'css-loader',
+      options: {
+        url: false
+      }
+    },
     {
       loader: 'webfonts-loader',
       options: { ... }
