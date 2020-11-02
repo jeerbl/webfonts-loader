@@ -20,13 +20,7 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              url: (url, resourcePath) => {
-                if (resourcePath.includes('myfont.font.js')) {
-                  return false;
-                }
-
-                return true;
-              }
+              url: () => false
             }
           },
           require.resolve('../') // Replace this line with require('webfonts-loader')
