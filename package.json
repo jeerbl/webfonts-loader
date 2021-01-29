@@ -6,7 +6,6 @@
   "main": "index.js",
   "scripts": {
     "test": "semistandard && ./runTest.sh && ./runTestEmbed.sh",
-    "postinstall": "github-sponsors",
     "snyk-protect": "snyk protect",
     "prepare": "npm run snyk-protect"
   },
@@ -21,10 +20,10 @@
     "loader"
   ],
   "author": "Jérôme Brunel",
+  "funding": "https://github.com/sponsors/jeerbl",
   "license": "MIT",
   "dependencies": {
     "@vusion/webfonts-generator": "^0.6.1",
-    "github-sponsors": "^1.0.1",
     "glob": "^7.1.6",
     "loader-utils": "^1.4.0"
   },
