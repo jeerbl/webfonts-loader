@@ -23,13 +23,13 @@
   "funding": "https://github.com/sponsors/jeerbl",
   "license": "MIT",
   "dependencies": {
-    "@vusion/webfonts-generator": "^0.6.1",
+    "@vusion/webfonts-generator": "^0.7.0",
     "glob": "^7.1.6",
-    "loader-utils": "^1.4.0"
+    "loader-utils": "^2.0.0"
   },
   "devDependencies": {
     "semistandard": "^13.0.1",
-    "snyk": "^1.440.1"
+    "snyk": "^1.461.0"
   },
   "semistandard": {
     "ignore": [
