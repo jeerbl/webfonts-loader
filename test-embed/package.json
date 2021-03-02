@@ -6,13 +6,13 @@
     "test": "rimraf ./dist && ava -v ./ava.js && webpack --mode production"
   },
   "devDependencies": {
-    "ava": "^0.25.0",
-    "css-loader": "^1.0.1",
-    "rimraf": "^2.7.1",
-    "style-loader": "^0.23.1",
-    "webpack": "^4.44.1",
+    "ava": "^2.4.0",
+    "css-loader": "^5.1.0",
+    "rimraf": "^3.0.2",
+    "style-loader": "^2.0.0",
+    "webpack": "^4.46.0",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.2"
   },
   "standard": {
     "ignore": [
