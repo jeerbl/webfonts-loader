@@ -113,7 +113,7 @@ module.exports = function (content) {
     cssFontsUrl: fontConfig.cssFontsUrl || '',
     embed: fontConfig.embed || false,
     formatOptions: fontConfig.formatOptions || {},
-    writeFiles: false
+    writeFiles: fontConfig.writeFiles || false
   };
 
   if ('ligature' in fontConfig) generatorOptions.ligature = fontConfig.ligature;
@@ -227,7 +227,9 @@ module.exports = function (content) {
           }
         );
         urls[format] = url.resolve(publicPath, formatFilename.replace(/\\/g, '/'));
-        this.emitFile(formatFilename, res[format]);
+        if (!generatorOptions.writeFiles) {
+          this.emitFile(formatFilename, res[format]);
+        }
       } else {
         urls[format] = 'data:' +
         mimeTypes[format] +
