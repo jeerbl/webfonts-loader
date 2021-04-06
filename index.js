@@ -241,6 +241,20 @@ module.exports = function (content) {
       emitCodepoints.emitFiles(this, emitCodepointsOptions, generatorOptions, options);
     }
 
+    if (generatorOptions.html) {
+      var htmlDest = generatorOptions.htmlDest ? generatorOptions.htmlDest : generatorOptions.fontName + '.html'
+      htmlDest = generatorOptions.dest.concat(htmlDest);
+      var htmlContent = res.generateHtml(urls)
+      var htmlFilename = loaderUtils.interpolateName(this,
+        htmlDest,
+        {
+          context: this.rootContext || this.options.context || this.context,
+          content: htmlContent
+        }
+      );
+      this.emitFile(htmlFilename, htmlContent);
+    }
+
     cb(null, res.generateCss(urls));
   });
 };
