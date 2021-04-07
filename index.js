@@ -242,7 +242,7 @@ module.exports = function (content) {
     }
 
     if (generatorOptions.html) {
-      var htmlDest = generatorOptions.htmlDest ? generatorOptions.htmlDest : generatorOptions.fontName + '.html'
+      var htmlDest = generatorOptions.htmlDest ? generatorOptions.htmlDest : generatorOptions.fontName + '.html';
       htmlDest = generatorOptions.dest.concat(htmlDest);
       htmlDest = loaderUtils.interpolateName(this,
         htmlDest,
@@ -256,7 +256,7 @@ module.exports = function (content) {
         relativeUrls[key] = path.relative(url.resolve(publicPath, path.dirname(htmlDest.replace(/\\/g, '/'))), urls[key]);
       }
 
-      var htmlContent = res.generateHtml(relativeUrls)
+      var htmlContent = res.generateHtml(relativeUrls);
       this.emitFile(htmlDest, htmlContent);
     }
 
