@@ -244,15 +244,20 @@ module.exports = function (content) {
     if (generatorOptions.html) {
       var htmlDest = generatorOptions.htmlDest ? generatorOptions.htmlDest : generatorOptions.fontName + '.html'
       htmlDest = generatorOptions.dest.concat(htmlDest);
-      var htmlContent = res.generateHtml(urls)
-      var htmlFilename = loaderUtils.interpolateName(this,
+      htmlDest = loaderUtils.interpolateName(this,
         htmlDest,
         {
-          context: this.rootContext || this.options.context || this.context,
-          content: htmlContent
+          context: this.rootContext || this.options.context || this.context
         }
       );
-      this.emitFile(htmlFilename, htmlContent);
+
+      var relativeUrls = {};
+      for (var key in urls) {
+        relativeUrls[key] = path.relative(url.resolve(publicPath, path.dirname(htmlDest.replace(/\\/g, '/'))), urls[key]);
+      }
+
+      var htmlContent = res.generateHtml(relativeUrls)
+      this.emitFile(htmlDest, htmlContent);
     }
 
     cb(null, res.generateCss(urls));
