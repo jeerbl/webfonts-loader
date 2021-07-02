@@ -1,7 +1,7 @@
 {
   "name": "webfonts-loader",
   "version": "7.2.0",
-  "description": "A WebPack loader to automaticaly generate font files and CSS to make your own icon font",
+  "description": "A WebPack loader to automatically generate font files and CSS to make your own icon font",
   "repository": "jeerbl/webfonts-loader",
   "main": "index.js",
   "scripts": {
@@ -25,7 +25,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@vusion/webfonts-generator": "^0.7.0",
+    "@vusion/webfonts-generator": "^0.7.2",
     "glob": "^7.1.6",
     "loader-utils": "^2.0.0"
   },
