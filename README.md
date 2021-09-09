@@ -243,3 +243,7 @@ htmlTemplate: path.resolve(__dirname, 'src/html.hbs'),
 ```
 
 See [webfonts-generator#htmltemplate](https://github.com/vusion/webfonts-generator#htmltemplate)
+
+##### `startCodepoint`, Number
+
+See [webfonts-generator#startcodepoint](https://github.com/vusion/webfonts-generator#startcodepoint)
