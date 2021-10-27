@@ -118,6 +118,11 @@ See [webfonts-generator#templateOptions](https://github.com/vusion/webfonts-gene
 The prefix to be used with each icon class.
 See [webfonts-generator#templateOptions](https://github.com/vusion/webfonts-generator#templateoptions)
 
+##### `cssContext`, String
+
+Add parameters or helpers to your template.
+See [webfonts-generator#cssContext](https://github.com/vusion/webfonts-generator#cssContext)
+
 ##### `cssTemplate`, String
 
 See [webfonts-generator#cssTemplate](https://github.com/vusion/webfonts-generator#csstemplate)
