@@ -116,6 +116,7 @@ module.exports = function (content) {
     writeFiles: false
   };
 
+  if ('startCodepoint' in fontConfig) generatorOptions.startCodepoint = fontConfig.startCodepoint;
   if ('ligature' in fontConfig) generatorOptions.ligature = fontConfig.ligature;
   if ('htmlTemplate' in fontConfig) generatorOptions.htmlTemplate = fontConfig.htmlTemplate;
 
