@@ -135,6 +135,10 @@ module.exports = function (content) {
     generatorOptions.cssContext = fontConfig.cssContext;
   }
 
+  if (fontConfig.htmlContext) {
+    generatorOptions.htmlContext = fontConfig.htmlContext;
+  }
+
   if (fontConfig.cssTemplate) {
     generatorOptions.cssTemplate = path.resolve(this.context, fontConfig.cssTemplate);
   }
