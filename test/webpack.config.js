@@ -11,6 +11,9 @@ module.exports = {
     publicPath: '/',
     filename: 'app.bundle.js'
   },
+  performance: {
+    hints: false
+  },
   module: {
     rules: [
       {
