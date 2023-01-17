@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/webfonts-loader.svg)](https://www.npmjs.com/package/webfonts-loader)
 [![npm](https://img.shields.io/npm/dm/webfonts-loader.svg)](https://www.npmjs.com/package/webfonts-loader)
-[![GitHub Action](https://img.shields.io/github/workflow/status/jeerbl/webfonts-loader/Node.js%20CI)](https://github.com/jeerbl/webfonts-loader/actions/workflows/node.js.yml)
+[![GitHub Action](https://img.shields.io/github/actions/workflow/status/jeerbl/webfonts-loader/nodejs-test.yml)](https://github.com/jeerbl/webfonts-loader/actions/workflows/nodejs-test.yml)
 [![license](https://img.shields.io/github/license/jeerbl/webfonts-loader.svg)](https://github.com/jeerbl/webfonts-loader/blob/master/LICENSE)
 
 A Webpack loader that generates fonts from your SVG icons and allows you to use your icons in your HTML.
