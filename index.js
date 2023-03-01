@@ -113,7 +113,7 @@ module.exports = function (content) {
     cssFontsUrl: fontConfig.cssFontsUrl || '',
     embed: fontConfig.embed || false,
     formatOptions: fontConfig.formatOptions || {},
-    writeFiles: false
+    writeFiles: rawFontConfig.writeFiles ?? true
   };
 
   if ('startCodepoint' in fontConfig) generatorOptions.startCodepoint = fontConfig.startCodepoint;
