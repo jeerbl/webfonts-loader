@@ -262,7 +262,11 @@ module.exports = function (content) {
 
       var relativeUrls = {};
       for (var key in urls) {
-        relativeUrls[key] = path.relative(url.resolve(publicPath, path.dirname(htmlDest.replace(/\\/g, '/'))), urls[key]);
+        if(!embed) {
+          relativeUrls[key] = path.relative(url.resolve(publicPath, path.dirname(htmlDest.replace(/\\/g, '/'))), urls[key]);
+        } else {
+          relativeUrls[key] = urls[key]
+        }
       }
 
       var htmlContent = res.generateHtml(relativeUrls);
