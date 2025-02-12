@@ -89,7 +89,7 @@ module.exports = {
   'fontName': 'myfonticons',
   'classPrefix': 'myfonticon-',
   'baseSelector': '.myfonticon',
-  'types': ['eot', 'woff', 'woff2', 'ttf', 'svg'],
+  'types': ['eot', 'woff2', 'woff', 'ttf', 'svg'],
   'fileName': 'app.[fontname].[hash].[ext]'
 };
 ```

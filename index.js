@@ -89,7 +89,7 @@ module.exports = function (content) {
   fontConfig.files = filesAndDeps.files;
 
   // With everything set up, let's make an ACTUAL config.
-  var formats = fontConfig.types || ['eot', 'woff', 'woff2', 'ttf', 'svg'];
+  var formats = fontConfig.types || ['eot', 'woff2', 'woff', 'ttf', 'svg'];
   if (formats.constructor !== Array) {
     formats = [formats];
   }
